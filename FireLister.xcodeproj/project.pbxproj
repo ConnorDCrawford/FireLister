@@ -7,14 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BBEB8A0916F2AEE290599C5 /* Pods_FireLister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05414805017D87D1E63DA22E /* Pods_FireLister.framework */; };
+		564586427BF683FA29F78A62 /* Pods_FireListerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9534204B554AB1BABC1466 /* Pods_FireListerTests.framework */; };
 		7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34962E1DA97A360065DC45 /* AppDelegate.swift */; };
-		7D3496311DA97A360065DC45 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496301DA97A360065DC45 /* MasterViewController.swift */; };
-		7D3496331DA97A360065DC45 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496321DA97A360065DC45 /* DetailViewController.swift */; };
+		7D3496311DA97A360065DC45 /* RemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496301DA97A360065DC45 /* RemindersTableViewController.swift */; };
 		7D3496361DA97A360065DC45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496341DA97A360065DC45 /* Main.storyboard */; };
 		7D3496381DA97A360065DC45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496371DA97A360065DC45 /* Assets.xcassets */; };
 		7D34963B1DA97A360065DC45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496391DA97A360065DC45 /* LaunchScreen.storyboard */; };
 		7D3496461DA97A360065DC45 /* FireListerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496451DA97A360065DC45 /* FireListerTests.swift */; };
 		7D3496511DA97A360065DC45 /* FireListerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496501DA97A360065DC45 /* FireListerUITests.swift */; };
+		7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34965E1DA983990065DC45 /* SignInTableViewController.swift */; };
+		7D3496611DA9A1BC0065DC45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */; };
+		7DCCF8031DAAD72700183EA6 /* Array+InsertionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF7FC1DAAD72700183EA6 /* Array+InsertionIndex.swift */; };
+		7DCCF8041DAAD72700183EA6 /* FIRDataSnapshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF7FD1DAAD72700183EA6 /* FIRDataSnapshotModel.swift */; };
+		7DCCF8051DAAD72700183EA6 /* FirebaseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF7FE1DAAD72700183EA6 /* FirebaseArray.swift */; };
+		7DCCF8061DAAD72700183EA6 /* FirebaseArrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF7FF1DAAD72700183EA6 /* FirebaseArrayDelegate.swift */; };
+		7DCCF8071DAAD72700183EA6 /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8001DAAD72700183EA6 /* FirebaseDataSource.swift */; };
+		7DCCF8081DAAD72700183EA6 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8011DAAD72700183EA6 /* FirebaseModel.swift */; };
+		7DCCF8091DAAD72700183EA6 /* FirebaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8021DAAD72700183EA6 /* FirebaseTableViewDataSource.swift */; };
+		7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */; };
+		7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */; };
+		7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */; };
+		7DCCF8141DAB1D2E00183EA6 /* ReminderCellTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8131DAB1D2E00183EA6 /* ReminderCellTextField.swift */; };
+		7DCCF8161DAC60CC00183EA6 /* ReminderDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8151DAC60CC00183EA6 /* ReminderDetailTableViewController.swift */; };
+		7DCCF81A1DAC922700183EA6 /* TriggerAlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8191DAC922700183EA6 /* TriggerAlarmTableViewCell.swift */; };
+		7DCCF81C1DAC939F00183EA6 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF81B1DAC939F00183EA6 /* TextFieldTableViewCell.swift */; };
+		7DCCF81E1DAC98FC00183EA6 /* RepeatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */; };
+		7DCCF8211DACA25D00183EA6 /* SetRepeatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8201DACA25D00183EA6 /* SetRepeatDelegate.swift */; };
+		DB5FC5E65C8D45EEA8E485CE /* Pods_FireListerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68502FF2C7191CB90A4E6F75 /* Pods_FireListerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05414805017D87D1E63DA22E /* Pods_FireLister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireLister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30679690F4998B6DCAB5B701 /* Pods-FireListerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerUITests/Pods-FireListerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		68502FF2C7191CB90A4E6F75 /* Pods_FireListerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireListerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71BE7DDC0F4D37DF45091C42 /* Pods-FireListerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerUITests/Pods-FireListerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		76C0188463A3DE63755AE547 /* Pods-FireListerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests.release.xcconfig"; sourceTree = "<group>"; };
 		7D34962B1DA97A360065DC45 /* FireLister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D34962E1DA97A360065DC45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D3496301DA97A360065DC45 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		7D3496321DA97A360065DC45 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7D3496301DA97A360065DC45 /* RemindersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersTableViewController.swift; sourceTree = "<group>"; };
 		7D3496351DA97A360065DC45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D3496371DA97A360065DC45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D34963A1DA97A360065DC45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +73,28 @@
 		7D34964C1DA97A360065DC45 /* FireListerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FireListerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D3496501DA97A360065DC45 /* FireListerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireListerUITests.swift; sourceTree = "<group>"; };
 		7D3496521DA97A360065DC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D34965E1DA983990065DC45 /* SignInTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTableViewController.swift; sourceTree = "<group>"; };
+		7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7DCCF7FC1DAAD72700183EA6 /* Array+InsertionIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+InsertionIndex.swift"; sourceTree = "<group>"; };
+		7DCCF7FD1DAAD72700183EA6 /* FIRDataSnapshotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRDataSnapshotModel.swift; sourceTree = "<group>"; };
+		7DCCF7FE1DAAD72700183EA6 /* FirebaseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseArray.swift; sourceTree = "<group>"; };
+		7DCCF7FF1DAAD72700183EA6 /* FirebaseArrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseArrayDelegate.swift; sourceTree = "<group>"; };
+		7DCCF8001DAAD72700183EA6 /* FirebaseDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
+		7DCCF8011DAAD72700183EA6 /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		7DCCF8021DAAD72700183EA6 /* FirebaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTableViewDataSource.swift; sourceTree = "<group>"; };
+		7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
+		7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderTableViewCell.swift; sourceTree = "<group>"; };
+		7DCCF8131DAB1D2E00183EA6 /* ReminderCellTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCellTextField.swift; sourceTree = "<group>"; };
+		7DCCF8151DAC60CC00183EA6 /* ReminderDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderDetailTableViewController.swift; sourceTree = "<group>"; };
+		7DCCF8191DAC922700183EA6 /* TriggerAlarmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerAlarmTableViewCell.swift; sourceTree = "<group>"; };
+		7DCCF81B1DAC939F00183EA6 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatTableViewController.swift; sourceTree = "<group>"; };
+		7DCCF8201DACA25D00183EA6 /* SetRepeatDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRepeatDelegate.swift; sourceTree = "<group>"; };
+		937F231E9AFC3C258429EB80 /* Pods-FireLister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLister.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLister/Pods-FireLister.release.xcconfig"; sourceTree = "<group>"; };
+		D99ECC12DC79380D88CFF4F7 /* Pods-FireListerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DA3F2D4FFD9AA84C356DC9D0 /* Pods-FireLister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLister/Pods-FireLister.debug.xcconfig"; sourceTree = "<group>"; };
+		DF9534204B554AB1BABC1466 /* Pods_FireListerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireListerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BBEB8A0916F2AEE290599C5 /* Pods_FireLister.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564586427BF683FA29F78A62 /* Pods_FireListerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +118,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5FC5E65C8D45EEA8E485CE /* Pods_FireListerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BEF6EE87798AA83DE3A9A47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DA3F2D4FFD9AA84C356DC9D0 /* Pods-FireLister.debug.xcconfig */,
+				937F231E9AFC3C258429EB80 /* Pods-FireLister.release.xcconfig */,
+				D99ECC12DC79380D88CFF4F7 /* Pods-FireListerTests.debug.xcconfig */,
+				76C0188463A3DE63755AE547 /* Pods-FireListerTests.release.xcconfig */,
+				30679690F4998B6DCAB5B701 /* Pods-FireListerUITests.debug.xcconfig */,
+				71BE7DDC0F4D37DF45091C42 /* Pods-FireListerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7D3496221DA97A360065DC45 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +145,8 @@
 				7D3496441DA97A360065DC45 /* FireListerTests */,
 				7D34964F1DA97A360065DC45 /* FireListerUITests */,
 				7D34962C1DA97A360065DC45 /* Products */,
+				0BEF6EE87798AA83DE3A9A47 /* Pods */,
+				ECFBE6BF1AB7D2699FC5F369 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,12 +164,16 @@
 			isa = PBXGroup;
 			children = (
 				7D34962E1DA97A360065DC45 /* AppDelegate.swift */,
-				7D3496301DA97A360065DC45 /* MasterViewController.swift */,
-				7D3496321DA97A360065DC45 /* DetailViewController.swift */,
+				7DCCF7FB1DAAD6F800183EA6 /* FirebaseUI */,
+				7DCCF80C1DAAD9C700183EA6 /* Models */,
+				7DCCF80E1DAAE33100183EA6 /* Views */,
+				7DCCF80D1DAAD9D200183EA6 /* View Controllers */,
+				7DCCF81F1DACA22400183EA6 /* Delegates */,
 				7D3496341DA97A360065DC45 /* Main.storyboard */,
 				7D3496371DA97A360065DC45 /* Assets.xcassets */,
 				7D3496391DA97A360065DC45 /* LaunchScreen.storyboard */,
 				7D34963C1DA97A360065DC45 /* Info.plist */,
+				7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */,
 			);
 			path = FireLister;
 			sourceTree = "<group>";
@@ -128,6 +196,69 @@
 			path = FireListerUITests;
 			sourceTree = "<group>";
 		};
+		7DCCF7FB1DAAD6F800183EA6 /* FirebaseUI */ = {
+			isa = PBXGroup;
+			children = (
+				7DCCF7FC1DAAD72700183EA6 /* Array+InsertionIndex.swift */,
+				7DCCF7FD1DAAD72700183EA6 /* FIRDataSnapshotModel.swift */,
+				7DCCF7FE1DAAD72700183EA6 /* FirebaseArray.swift */,
+				7DCCF7FF1DAAD72700183EA6 /* FirebaseArrayDelegate.swift */,
+				7DCCF8001DAAD72700183EA6 /* FirebaseDataSource.swift */,
+				7DCCF8011DAAD72700183EA6 /* FirebaseModel.swift */,
+				7DCCF8021DAAD72700183EA6 /* FirebaseTableViewDataSource.swift */,
+			);
+			name = FirebaseUI;
+			sourceTree = "<group>";
+		};
+		7DCCF80C1DAAD9C700183EA6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7DCCF80D1DAAD9D200183EA6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7D34965E1DA983990065DC45 /* SignInTableViewController.swift */,
+				7D3496301DA97A360065DC45 /* RemindersTableViewController.swift */,
+				7DCCF8151DAC60CC00183EA6 /* ReminderDetailTableViewController.swift */,
+				7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7DCCF80E1DAAE33100183EA6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */,
+				7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */,
+				7DCCF8131DAB1D2E00183EA6 /* ReminderCellTextField.swift */,
+				7DCCF8191DAC922700183EA6 /* TriggerAlarmTableViewCell.swift */,
+				7DCCF81B1DAC939F00183EA6 /* TextFieldTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		7DCCF81F1DACA22400183EA6 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				7DCCF8201DACA25D00183EA6 /* SetRepeatDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		ECFBE6BF1AB7D2699FC5F369 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05414805017D87D1E63DA22E /* Pods_FireLister.framework */,
+				DF9534204B554AB1BABC1466 /* Pods_FireListerTests.framework */,
+				68502FF2C7191CB90A4E6F75 /* Pods_FireListerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +266,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D3496551DA97A360065DC45 /* Build configuration list for PBXNativeTarget "FireLister" */;
 			buildPhases = (
+				CC59590AB00138D0A66E6275 /* [CP] Check Pods Manifest.lock */,
 				7D3496271DA97A360065DC45 /* Sources */,
 				7D3496281DA97A360065DC45 /* Frameworks */,
 				7D3496291DA97A360065DC45 /* Resources */,
+				93976F19DDE6E02A214C6F11 /* [CP] Embed Pods Frameworks */,
+				6E0DA99AAEA356EDCEC12C62 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +286,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D3496581DA97A360065DC45 /* Build configuration list for PBXNativeTarget "FireListerTests" */;
 			buildPhases = (
+				4349FF1BD57A51EC09911CF8 /* [CP] Check Pods Manifest.lock */,
 				7D34963D1DA97A360065DC45 /* Sources */,
 				7D34963E1DA97A360065DC45 /* Frameworks */,
 				7D34963F1DA97A360065DC45 /* Resources */,
+				F2118C27AF76FDE1E3C9A454 /* [CP] Embed Pods Frameworks */,
+				38FEC6A0291B59F284D34015 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +307,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D34965B1DA97A360065DC45 /* Build configuration list for PBXNativeTarget "FireListerUITests" */;
 			buildPhases = (
+				7B35BF7D548BB04FDD3BAA78 /* [CP] Check Pods Manifest.lock */,
 				7D3496481DA97A360065DC45 /* Sources */,
 				7D3496491DA97A360065DC45 /* Frameworks */,
 				7D34964A1DA97A360065DC45 /* Resources */,
+				D5900AB6868A49162A1BFFC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,6 +336,7 @@
 					7D34962A1DA97A360065DC45 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LVQAV2S2JC;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					7D3496401DA97A360065DC45 = {
@@ -239,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D34963B1DA97A360065DC45 /* LaunchScreen.storyboard in Resources */,
+				7D3496611DA9A1BC0065DC45 /* GoogleService-Info.plist in Resources */,
 				7D3496381DA97A360065DC45 /* Assets.xcassets in Resources */,
 				7D3496361DA97A360065DC45 /* Main.storyboard in Resources */,
 			);
@@ -260,14 +401,153 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		38FEC6A0291B59F284D34015 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4349FF1BD57A51EC09911CF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6E0DA99AAEA356EDCEC12C62 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireLister/Pods-FireLister-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B35BF7D548BB04FDD3BAA78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		93976F19DDE6E02A214C6F11 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireLister/Pods-FireLister-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC59590AB00138D0A66E6275 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D5900AB6868A49162A1BFFC3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireListerUITests/Pods-FireListerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2118C27AF76FDE1E3C9A454 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7D3496271DA97A360065DC45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D3496331DA97A360065DC45 /* DetailViewController.swift in Sources */,
-				7D3496311DA97A360065DC45 /* MasterViewController.swift in Sources */,
+				7DCCF81C1DAC939F00183EA6 /* TextFieldTableViewCell.swift in Sources */,
+				7DCCF8061DAAD72700183EA6 /* FirebaseArrayDelegate.swift in Sources */,
+				7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */,
+				7DCCF8031DAAD72700183EA6 /* Array+InsertionIndex.swift in Sources */,
+				7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */,
+				7DCCF8091DAAD72700183EA6 /* FirebaseTableViewDataSource.swift in Sources */,
+				7DCCF81E1DAC98FC00183EA6 /* RepeatTableViewController.swift in Sources */,
+				7DCCF8161DAC60CC00183EA6 /* ReminderDetailTableViewController.swift in Sources */,
+				7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */,
+				7DCCF8081DAAD72700183EA6 /* FirebaseModel.swift in Sources */,
+				7DCCF8041DAAD72700183EA6 /* FIRDataSnapshotModel.swift in Sources */,
+				7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */,
+				7D3496311DA97A360065DC45 /* RemindersTableViewController.swift in Sources */,
+				7DCCF8051DAAD72700183EA6 /* FirebaseArray.swift in Sources */,
+				7DCCF8071DAAD72700183EA6 /* FirebaseDataSource.swift in Sources */,
 				7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */,
+				7DCCF8211DACA25D00183EA6 /* SetRepeatDelegate.swift in Sources */,
+				7DCCF81A1DAC922700183EA6 /* TriggerAlarmTableViewCell.swift in Sources */,
+				7DCCF8141DAB1D2E00183EA6 /* ReminderCellTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,21 +697,26 @@
 		};
 		7D3496561DA97A360065DC45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA3F2D4FFD9AA84C356DC9D0 /* Pods-FireLister.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LVQAV2S2JC;
 				INFOPLIST_FILE = FireLister/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ConnorCrawford.FireLister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		7D3496571DA97A360065DC45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 937F231E9AFC3C258429EB80 /* Pods-FireLister.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LVQAV2S2JC;
 				INFOPLIST_FILE = FireLister/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -443,6 +728,7 @@
 		};
 		7D3496591DA97A360065DC45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D99ECC12DC79380D88CFF4F7 /* Pods-FireListerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -458,6 +744,7 @@
 		};
 		7D34965A1DA97A360065DC45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76C0188463A3DE63755AE547 /* Pods-FireListerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -473,6 +760,7 @@
 		};
 		7D34965C1DA97A360065DC45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30679690F4998B6DCAB5B701 /* Pods-FireListerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LVQAV2S2JC;
@@ -487,6 +775,7 @@
 		};
 		7D34965D1DA97A360065DC45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71BE7DDC0F4D37DF45091C42 /* Pods-FireListerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LVQAV2S2JC;
@@ -518,6 +807,7 @@
 				7D3496571DA97A360065DC45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D3496581DA97A360065DC45 /* Build configuration list for PBXNativeTarget "FireListerTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +816,7 @@
 				7D34965A1DA97A360065DC45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D34965B1DA97A360065DC45 /* Build configuration list for PBXNativeTarget "FireListerUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +825,7 @@
 				7D34965D1DA97A360065DC45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
