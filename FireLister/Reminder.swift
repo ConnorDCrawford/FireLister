@@ -63,6 +63,8 @@ class Reminder: NSObject, FirebaseModel {
         
         if let alarmDate = alarmDate {
             reminder[Keys.alarmDate.rawValue] = alarmDate.datetimeToString()
+        } else {
+            ref.child(Keys.alarmDate.rawValue).removeValue()
         }
         
         // Push updates

@@ -197,6 +197,8 @@ class ReminderDetailTableViewController: UITableViewController {
             transition(to: alarmState)
         } else {
             transition(to: defaultState)
+            reminder?.alarmDate = nil
+            reminder?.push(nil)
         }
     }
     
