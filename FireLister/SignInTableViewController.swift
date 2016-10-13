@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 import SwiftLCS
 
 class SignInTableViewController: UITableViewController {
@@ -102,6 +103,10 @@ class SignInTableViewController: UITableViewController {
                         NSLog(error.localizedDescription)
                     } else {
                         self.performSegue(withIdentifier: "segueToSplitVC", sender: self)
+                        if let user = user {
+                            
+                        }
+                        
                     }
                 })
             }

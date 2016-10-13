@@ -1,5 +1,5 @@
 //
-//  RemindersTableViewController.swift
+//  ListTableViewController.swift
 //  FireLister
 //
 //  Created by Connor Crawford on 10/8/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RemindersTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController {
 
     var detailViewController: ReminderDetailTableViewController? = nil
     var remindersDataSource: FirebaseTableViewDataSource<Reminder>!
@@ -32,7 +32,7 @@ class RemindersTableViewController: UITableViewController {
             
             var detailText = reminder.alarmDate?.datetimeToString()
             if reminder.repeatFrequency != .never {
-                detailText = detailText! + (" | " + reminder.repeatFrequencyDescription)
+                detailText = detailText! + (", " + reminder.repeatFrequencyDescription)
             }
             cell.dateLabel.text = detailText
         }
@@ -129,7 +129,7 @@ class RemindersTableViewController: UITableViewController {
 
 }
 
-extension RemindersTableViewController: UITextFieldDelegate {
+extension ListTableViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text, text.characters.count > 0 {

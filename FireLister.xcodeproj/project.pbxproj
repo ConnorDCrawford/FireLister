@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		4BBEB8A0916F2AEE290599C5 /* Pods_FireLister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05414805017D87D1E63DA22E /* Pods_FireLister.framework */; };
 		564586427BF683FA29F78A62 /* Pods_FireListerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9534204B554AB1BABC1466 /* Pods_FireListerTests.framework */; };
+		7D2C95E61DAFF2E100656843 /* ListsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2C95E51DAFF2E100656843 /* ListsCollectionViewController.swift */; };
 		7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34962E1DA97A360065DC45 /* AppDelegate.swift */; };
-		7D3496311DA97A360065DC45 /* RemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496301DA97A360065DC45 /* RemindersTableViewController.swift */; };
+		7D3496311DA97A360065DC45 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496301DA97A360065DC45 /* ListTableViewController.swift */; };
 		7D3496361DA97A360065DC45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496341DA97A360065DC45 /* Main.storyboard */; };
 		7D3496381DA97A360065DC45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496371DA97A360065DC45 /* Assets.xcassets */; };
 		7D34963B1DA97A360065DC45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496391DA97A360065DC45 /* LaunchScreen.storyboard */; };
@@ -34,6 +35,8 @@
 		7DCCF81C1DAC939F00183EA6 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF81B1DAC939F00183EA6 /* TextFieldTableViewCell.swift */; };
 		7DCCF81E1DAC98FC00183EA6 /* RepeatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */; };
 		7DCCF8211DACA25D00183EA6 /* SetRepeatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8201DACA25D00183EA6 /* SetRepeatDelegate.swift */; };
+		7DED93021DAFE8B000467615 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED93011DAFE8B000467615 /* User.swift */; };
+		7DED93041DAFE91300467615 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED93031DAFE91300467615 /* List.swift */; };
 		DB5FC5E65C8D45EEA8E485CE /* Pods_FireListerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68502FF2C7191CB90A4E6F75 /* Pods_FireListerUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,9 +63,10 @@
 		68502FF2C7191CB90A4E6F75 /* Pods_FireListerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireListerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BE7DDC0F4D37DF45091C42 /* Pods-FireListerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerUITests/Pods-FireListerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		76C0188463A3DE63755AE547 /* Pods-FireListerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests.release.xcconfig"; sourceTree = "<group>"; };
+		7D2C95E51DAFF2E100656843 /* ListsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsCollectionViewController.swift; sourceTree = "<group>"; };
 		7D34962B1DA97A360065DC45 /* FireLister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D34962E1DA97A360065DC45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D3496301DA97A360065DC45 /* RemindersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersTableViewController.swift; sourceTree = "<group>"; };
+		7D3496301DA97A360065DC45 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		7D3496351DA97A360065DC45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D3496371DA97A360065DC45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D34963A1DA97A360065DC45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		7DCCF81B1DAC939F00183EA6 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatTableViewController.swift; sourceTree = "<group>"; };
 		7DCCF8201DACA25D00183EA6 /* SetRepeatDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRepeatDelegate.swift; sourceTree = "<group>"; };
+		7DED93011DAFE8B000467615 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7DED93031DAFE91300467615 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		937F231E9AFC3C258429EB80 /* Pods-FireLister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLister.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLister/Pods-FireLister.release.xcconfig"; sourceTree = "<group>"; };
 		D99ECC12DC79380D88CFF4F7 /* Pods-FireListerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA3F2D4FFD9AA84C356DC9D0 /* Pods-FireLister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLister/Pods-FireLister.debug.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */,
+				7DED93011DAFE8B000467615 /* User.swift */,
+				7DED93031DAFE91300467615 /* List.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -222,7 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				7D34965E1DA983990065DC45 /* SignInTableViewController.swift */,
-				7D3496301DA97A360065DC45 /* RemindersTableViewController.swift */,
+				7D2C95E51DAFF2E100656843 /* ListsCollectionViewController.swift */,
+				7D3496301DA97A360065DC45 /* ListTableViewController.swift */,
 				7DCCF8151DAC60CC00183EA6 /* ReminderDetailTableViewController.swift */,
 				7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */,
 			);
@@ -531,17 +540,20 @@
 			files = (
 				7DCCF81C1DAC939F00183EA6 /* TextFieldTableViewCell.swift in Sources */,
 				7DCCF8061DAAD72700183EA6 /* FirebaseArrayDelegate.swift in Sources */,
+				7DED93041DAFE91300467615 /* List.swift in Sources */,
 				7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */,
 				7DCCF8031DAAD72700183EA6 /* Array+InsertionIndex.swift in Sources */,
 				7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */,
 				7DCCF8091DAAD72700183EA6 /* FirebaseTableViewDataSource.swift in Sources */,
 				7DCCF81E1DAC98FC00183EA6 /* RepeatTableViewController.swift in Sources */,
 				7DCCF8161DAC60CC00183EA6 /* ReminderDetailTableViewController.swift in Sources */,
+				7DED93021DAFE8B000467615 /* User.swift in Sources */,
 				7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */,
 				7DCCF8081DAAD72700183EA6 /* FirebaseModel.swift in Sources */,
+				7D2C95E61DAFF2E100656843 /* ListsCollectionViewController.swift in Sources */,
 				7DCCF8041DAAD72700183EA6 /* FIRDataSnapshotModel.swift in Sources */,
 				7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */,
-				7D3496311DA97A360065DC45 /* RemindersTableViewController.swift in Sources */,
+				7D3496311DA97A360065DC45 /* ListTableViewController.swift in Sources */,
 				7DCCF8051DAAD72700183EA6 /* FirebaseArray.swift in Sources */,
 				7DCCF8071DAAD72700183EA6 /* FirebaseDataSource.swift in Sources */,
 				7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */,
