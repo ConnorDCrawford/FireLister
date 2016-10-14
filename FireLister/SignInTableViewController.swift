@@ -8,7 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 import SwiftLCS
+
+private let segueName = "segueToSplitVC"
+var userID: String?
 
 class SignInTableViewController: UITableViewController {
 
@@ -101,7 +105,8 @@ class SignInTableViewController: UITableViewController {
                     if let error = error {
                         NSLog(error.localizedDescription)
                     } else {
-                        self.performSegue(withIdentifier: "segueToSplitVC", sender: self)
+                        userID = user?.uid
+                        self.performSegue(withIdentifier: segueName, sender: self)
                     }
                 })
             }
@@ -136,7 +141,7 @@ class SignInTableViewController: UITableViewController {
         case .password: break
         case .confirmPassword: break
         default:
-            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0)
+            cell.separatorInset = UIEdgeInsetsMake(0, view.frame.width, 0, 0)
         }
         
         return cell
@@ -154,10 +159,11 @@ class SignInTableViewController: UITableViewController {
                 if let error = error {
                     NSLog(error.localizedDescription)
                 } else {
+                    userID = user?.uid
                     UserDefaults.standard.set(true, forKey: "hasLoginKey")
                     UserDefaults.standard.set(email, forKey: "userEmail")
                     UserDefaults.standard.set(password, forKey: "userPassword")
-                    self.performSegue(withIdentifier: "segueToSplitVC", sender: self)
+                    self.performSegue(withIdentifier: segueName, sender: self)
                 }
             })
         }
@@ -171,10 +177,11 @@ class SignInTableViewController: UITableViewController {
                 if let error = error {
                     NSLog(error.localizedDescription)
                 } else {
+                    userID = user?.uid
                     UserDefaults.standard.set(true, forKey: "hasLoginKey")
                     UserDefaults.standard.set(email, forKey: "userEmail")
                     UserDefaults.standard.set(password, forKey: "userPassword")
-                    self.performSegue(withIdentifier: "segueToSplitVC", sender: self)
+                    self.performSegue(withIdentifier: segueName, sender: self)
                 }
             })
         }
@@ -216,9 +223,14 @@ class SignInTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         let splitViewController = segue.destination as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
+        splitViewController.preferredDisplayMode = .allVisible
+        
+        guard let userID = userID,
+            let listsVC = splitViewController.viewControllers.first?.childViewControllers.first as? ListsCollectionViewController
+            else { return }
+        
+        listsVC.userID = userID
     }
 
 }
@@ -227,15 +239,16 @@ class SignInTableViewController: UITableViewController {
 
 extension SignInTableViewController: UISplitViewControllerDelegate {
     
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
-        return true
-//        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-//        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-//        if topAsDetailController.detailItem == nil {
-//            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-//            return true
-//        }
-//        return false
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
+        guard let topAsDetailController = secondaryAsNavController.topViewController as? ListTableViewController else { return false }
+        if topAsDetailController.list == nil {
+            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+            return true
+        }
+        return false
     }
     
 }
+
+
