@@ -12,7 +12,7 @@ import FirebaseDatabase
 class Reminder: NSObject, FirebaseModel {
     
     enum Keys: String {
-        case text = "text", alarmDate = "date", repeatFrequency = "freq"
+        case text = "text", alarmDate = "date", repeatFrequency = "freq", listID = "lid"
     }
     
     enum RepeatFrequency: Int {
@@ -25,10 +25,12 @@ class Reminder: NSObject, FirebaseModel {
     var text: String!
     var alarmDate: Date?
     var repeatFrequency: RepeatFrequency
+    var listID: String
     
-    init(key: String, ref: FIRDatabaseReference, text: String, alarmDate: Date?, repeatFrequency: RepeatFrequency) {
+    init(key: String, ref: FIRDatabaseReference, listID: String, text: String, alarmDate: Date?, repeatFrequency: RepeatFrequency) {
         self.key = key
         self.ref = ref
+        self.listID = listID
         self.repeatFrequency = repeatFrequency
         super.init()
         self.text = text
@@ -36,15 +38,17 @@ class Reminder: NSObject, FirebaseModel {
     }
     
     /// Use this initializer only when creating a new record in the database
-    convenience init(text: String, alarmDate: Date?, repeatFrequency: RepeatFrequency) {
+    convenience init(listID: String, text: String, alarmDate: Date?, repeatFrequency: RepeatFrequency) {
         let ref = Reminder.typeRef.childByAutoId()
         let key = ref.key
-        self.init(key: key, ref: ref, text: text, alarmDate: alarmDate, repeatFrequency: repeatFrequency)
+        self.init(key: key, ref: ref, listID: listID, text: text, alarmDate: alarmDate, repeatFrequency: repeatFrequency)
     }
     
     required convenience init?(snapshot: FIRDataSnapshot) {
         // Check to make sure snapshot is valid
-        guard let values = snapshot.value as? [String : Any], let text = values[Keys.text.rawValue] as? String else {
+        guard let values = snapshot.value as? [String : Any],
+            let listID = values[Keys.listID.rawValue] as? String,
+            let text = values[Keys.text.rawValue] as? String else {
             // Does not contain necessary data, fail init
             return nil
         }
@@ -53,13 +57,14 @@ class Reminder: NSObject, FirebaseModel {
         let alarmDate = (values[Keys.alarmDate.rawValue] as? String)?.toDate()
         let repeatFrequency = values[Keys.repeatFrequency.rawValue] as? Int
         
-        self.init(key: snapshot.key, ref: snapshot.ref, text: text, alarmDate: alarmDate, repeatFrequency: RepeatFrequency(rawValue: repeatFrequency!)!)
+        self.init(key: snapshot.key, ref: snapshot.ref, listID: listID, text: text, alarmDate: alarmDate, repeatFrequency: RepeatFrequency(rawValue: repeatFrequency!)!)
     }
     
     func push(_ completionHandler: ((Error?)->Void)?) {
         
         var reminder: [String : Any] = [Keys.text.rawValue : text,
-                                        Keys.repeatFrequency.rawValue : repeatFrequency.rawValue]
+                                        Keys.repeatFrequency.rawValue : repeatFrequency.rawValue,
+                                        Keys.listID.rawValue : listID]
         
         if let alarmDate = alarmDate {
             reminder[Keys.alarmDate.rawValue] = alarmDate.datetimeToString()
