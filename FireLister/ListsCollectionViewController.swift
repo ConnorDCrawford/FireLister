@@ -14,10 +14,12 @@ private let reuseIdentifier = "ListCell"
 class ListsCollectionViewController: UICollectionViewController {
 
     private var lists: FirebaseArray<List>?
-    var listID: String? {
+    var userID: String? {
         didSet {
-            if let listID = listID {
-                lists = FirebaseArray<List>(ref: FIRDatabase.database().reference().child("lists").child(listID))
+            if let userID = userID {
+                let query = FIRDatabase.database().reference().child("lists").queryOrdered(byChild: "uid").queryEqual(toValue: userID) //queryEqual(toValue: userID, childKey: "uid")
+                lists = FirebaseArray<List>(query: query)
+                lists?.delegate = self
             }
         }
     }
@@ -27,9 +29,6 @@ class ListsCollectionViewController: UICollectionViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -66,7 +65,12 @@ class ListsCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
         // Configure the cell
-    
+        if let cell = cell as? ListCollectionViewCell, let list = lists?[indexPath.row] {
+            cell.titleLabel.text = list.title
+            cell.backgroundColor = list.color
+            cell.layer.masksToBounds = true
+            cell.layer.cornerRadius = 10
+        }
         return cell
     }
 
@@ -100,5 +104,38 @@ class ListsCollectionViewController: UICollectionViewController {
     
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let listVC = segue.destination.childViewControllers.first as? ListTableViewController
+        let index = collectionView?.indexPathsForSelectedItems?.first?.row
+        listVC?.list = lists?[index!]
+        
+        listVC?.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+        listVC?.navigationItem.leftItemsSupplementBackButton = true
+    }
 
+}
+
+extension ListsCollectionViewController: FirebaseArrayDelegate {
+    
+    func initialized(objects: [FirebaseModel]) {
+        collectionView?.reloadData()
+    }
+    
+    func childAdded(object: FirebaseModel, at index: Int) {
+        collectionView?.insertItems(at: [IndexPath(item: index, section: 0)])
+    }
+    
+    func childRemoved(object: FirebaseModel, at index: Int) {
+        collectionView?.deleteItems(at: [IndexPath(item: index, section: 0)])
+    }
+    
+    func childChanged(object: FirebaseModel, at index: Int) {
+        collectionView?.reloadItems(at: [IndexPath(item: index, section: 0)])
+    }
+    
+    func childMoved(object: FirebaseModel, from oldIndex: Int, to newIndex: Int) {
+        collectionView?.moveItem(at: IndexPath(item: oldIndex, section: 0), to: IndexPath(item: newIndex, section: 0))
+    }
+    
 }
