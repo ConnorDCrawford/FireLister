@@ -20,6 +20,7 @@ class ListTableViewController: UITableViewController {
             remindersDataSource = FirebaseTableViewDataSource(query: query, sortDescriptors: nil, predicate: nil, prototypeReuseIdentifier: "ReminderCell", tableView: tableView)
             remindersDataSource?.populateCell { (cell, reminder) in
                 let cell = cell as! ReminderTableViewCell
+                cell.reminder = reminder
                 cell.titleField.text = reminder.text
                 
                 var detailText = reminder.alarmDate?.datetimeToString()
@@ -27,7 +28,16 @@ class ListTableViewController: UITableViewController {
                     detailText = detailText! + (", " + reminder.repeatFrequencyDescription)
                 }
                 cell.dateLabel.text = detailText
+                
+                let frame = CGRect(x: 0, y: 0, width: 22, height: 22)
+                cell.completedButton.setImage(ColorCircleView.image(in: frame, state: .empty, color: self.list!.color), for: .normal)
+                cell.completedButton.setImage(ColorCircleView.image(in: frame, state: .selected, color: self.list!.color), for: .selected)
+                cell.completedButton.setImage(ColorCircleView.image(in: frame, state: .selected, color: self.list!.color), for: .highlighted)
+                cell.completedButton.isSelected = reminder.isCompleted
             }
+            
+            // Set view controller's title
+            navigationItem.title = listID
         }
     }
     var detailViewController: ReminderDetailTableViewController? = nil
@@ -40,6 +50,7 @@ class ListTableViewController: UITableViewController {
         
         if self.list != nil {
             navigationItem.rightBarButtonItem = self.editButtonItem
+            navigationController?.isToolbarHidden = false
         }
         
         // Set row height to automatic dimension

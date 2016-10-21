@@ -10,11 +10,8 @@ import UIKit
 
 class ColorCircleView: UIView {
     
-    var color: Color!
-    var isSelected = false {
-        didSet {
-            
-        }
+    enum State {
+        case empty, filled, selected
     }
     
     enum Color {
@@ -69,27 +66,41 @@ class ColorCircleView: UIView {
         }
     }
     
+    var state: State!
+    var color: Color!
+    
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         // Drawing code
         
+        ColorCircleView.draw(in: rect, state: state, color: color.value)
+    }
+
+    private class func draw(in rect: CGRect, state: State, color: UIColor) {
         // Outer Oval Drawing
         let outerOvalPath = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: rect.width - 2, height: rect.height - 2))
-        color.value.setStroke()
+        color.setStroke()
         outerOvalPath.lineWidth = 1
         outerOvalPath.stroke()
         
-        
-        if (isSelected) {
+        if state == .selected {
             // Inner Oval Drawing
             let innerOvalPath = UIBezierPath(ovalIn: CGRect(x: 3, y: 3, width: rect.width - 6, height: rect.height - 6))
-            color.value.setFill()
+            color.setFill()
             innerOvalPath.fill()
-        } else {
-            color.value.setFill()
+        } else if state == .filled {
+            color.setFill()
             outerOvalPath.fill()
         }
     }
-
+    
+    class func image(in rect: CGRect, state: State, color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        ColorCircleView.draw(in: rect, state: state, color: color)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+    
 }

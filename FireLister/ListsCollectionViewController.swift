@@ -73,37 +73,6 @@ class ListsCollectionViewController: UICollectionViewController {
         }
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let listVC = segue.destination.childViewControllers.first as? ListTableViewController
@@ -114,6 +83,29 @@ class ListsCollectionViewController: UICollectionViewController {
         listVC?.navigationItem.leftItemsSupplementBackButton = true
     }
 
+    @IBAction func didLongPressCell(_ sender: UILongPressGestureRecognizer) {
+        let point = sender.location(in: self.collectionView)
+        if let indexPath = collectionView?.indexPathForItem(at: point),
+            let cell = collectionView?.cellForItem(at: indexPath),
+            let list = lists?[indexPath.row] {
+            
+            let alert = UIAlertController(title: "Delete \(list.key)", message: "Are you sure you want to delete the list \"\(list.key)\"?", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                // Do nothing
+            }
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                list.remove(nil)
+            }
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            
+            if let presenter = alert.popoverPresentationController {
+                presenter.sourceView = cell
+                presenter.sourceRect = cell.bounds
+            }
+            present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension ListsCollectionViewController: FirebaseArrayDelegate {

@@ -10,6 +10,7 @@ import UIKit
 
 class CreateListTableViewController: UITableViewController {
 
+    @IBOutlet weak var colorsCollectionView: UICollectionView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     private var titleText: String?
     fileprivate var color: ColorCircleView.Color?
@@ -23,6 +24,7 @@ class CreateListTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +75,7 @@ extension CreateListTableViewController: UICollectionViewDataSource {
         
         if let cell = cell as? ColorCircleCollectionViewCell {
             cell.colorCircleView.color = ColorCircleView.Color.color(at: indexPath.row)
-            cell.colorCircleView.isSelected = indexPath.row == selectedColorIndex
+            cell.colorCircleView.state = (indexPath.row == selectedColorIndex ? .selected : .filled)
             cell.colorCircleView.setNeedsDisplay()
         }
         
