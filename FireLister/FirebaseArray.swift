@@ -195,6 +195,7 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
         let removeHandler = { (snapshot: FIRDataSnapshot) in
             if let index = self.indexForKey(snapshot.key) {
                 let object = self.models[index]
+                self.keys.remove(object.key)
                 self.models.remove(at: index)
                 self.delegate?.childRemoved?(object: object, at: index)
             }
