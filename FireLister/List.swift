@@ -14,32 +14,30 @@ class List: NSObject, FirebaseModel {
     var key: String
     var ref: FIRDatabaseReference
     var uid: String
-    var title: String {
-        get {
-            return key
-        }
-    }
+    var title: String
     var color: UIColor
 
-    init(key: String, ref: FIRDatabaseReference, uid: String, color: UIColor) {
+    init(key: String, ref: FIRDatabaseReference, uid: String, title: String, color: UIColor) {
         self.uid = uid
         self.key = key
         self.ref = ref
+        self.title = title
         self.color = color
         super.init()
     }
     
     /// Use this initializer only when creating a new record in the database
     convenience init(uid: String, title: String, color: UIColor) {
-        let ref = FIRDatabase.database().reference().child("lists").child(title)
+        let ref = FIRDatabase.database().reference().child("lists").childByAutoId()
         let key = ref.key
-        self.init(key: key, ref: ref, uid: uid, color: color)
+        self.init(key: key, ref: ref, uid: uid, title: title, color: color)
     }
     
     required convenience init?(snapshot: FIRDataSnapshot) {
         // Check to make sure snapshot is valid
         guard let values = snapshot.value as? [String : Any],
             let uid = values["uid"] as? String,
+            let title = values["title"] as? String,
             let red = values["red"] as? Float,
             let green = values["green"] as? Float,
             let blue  = values["blue"] as? Float
@@ -49,7 +47,7 @@ class List: NSObject, FirebaseModel {
         }
         
         let color = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
-        self.init(key: snapshot.key, ref: snapshot.ref, uid: uid, color: color)
+        self.init(key: snapshot.key, ref: snapshot.ref, uid: uid, title: title, color: color)
     }
     
     func push(_ completionHandler: ((Error?) -> Void)?) {
@@ -57,6 +55,7 @@ class List: NSObject, FirebaseModel {
         color.getRed(&red, green: &green, blue: &blue, alpha: nil)
         let list: [String : Any] = [
             "uid" : uid,
+            "title" : title,
             "red" : red,
             "green" : green,
             "blue" : blue

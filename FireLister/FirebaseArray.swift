@@ -2,8 +2,9 @@ import Firebase
 
 class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
     
-    typealias Index = Int
     typealias SortOrderBlock = (Model, Model) -> ComparisonResult
+    typealias FilterBlock = (Model) -> Bool
+    typealias Index = Int
     
     /**
      * The delegate object that array changes are surfaced to, which conforms to the
@@ -17,138 +18,60 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
     private(set) var query: FIRDatabaseQuery
     
     /**
-     * The predicate by which the snapshots are filtered. If predicate is nil, the array reflects all
+     * The block with which the snapshots are filtered. If filterBlock is nil, the array reflects all
      * results from the Firebase Query or Reference.
      */
-    private(set) var predicate: NSPredicate?
+    private var filterBlock: FilterBlock?
     
+    
+    /**
+     * The block with which the snapshots are sorted. If sortOrderBlock is nil, the array is sorted
+     * in the order specified by the Firebase Query or Reference.
+     */
     private var sortOrderBlock: SortOrderBlock?
     
-    /**
-     * Intitalizes FirebaseArray with a standard Firebase reference.
-     * @param ref The Firebase reference which provides data to FirebaseArray
-     * @return The instance of FirebaseArray
-     */
+    // TODO: Write convenience initializers and documentation
+    
     convenience init(ref: FIRDatabaseReference) {
-        self.init(query: ref, sortDescriptors: nil, predicate: nil)
+        self.init(query: ref)
     }
     
-    /**
-     * Intitalizes FirebaseArray with a Firebase query (FIRDatabaseQuery).
-     * @param query A query on a Firebase reference which provides filtered data to FirebaseArray
-     * @return The instance of FirebaseArray
-     */
     convenience init(query: FIRDatabaseQuery) {
-        self.init(query: query, sortDescriptors: nil, predicate: nil)
+        self.init(query: query, sortOrderBlock: nil, filterBlock: nil)
     }
     
-    /**
-     * Initializes FirebaseArray with a standard Firebase reference and an array of NSSortDescriptors.
-     * Use this if you would like the array to be sorted after being received from the server, or if
-     * you would like more complex sorting behavior.
-     * @param ref The Firebase reference which provides data to FirebaseArray
-     * @param sortDescriptors The sort descriptors by which the array should be ordered. If the array is
-     * empty or nil, the array is ordered by [snapshot1.key compare:snapshot2.key]
-     * @return The instance of FirebaseArray
-     */
-    convenience init(ref: FIRDatabaseReference, sortDescriptors: [NSSortDescriptor]?) {
-        self.init(query: ref, sortDescriptors: sortDescriptors, predicate: nil)
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?) {
+        self.init(query: query,
+                  sortOrderBlock: FirebaseArray.getSortOrderBlock(from: sortDescriptors),
+                  filterBlock: FirebaseArray.getFilterBlock(from: predicate))
     }
     
-    /**
-     * Initializes FirebaseArray with a Firebase query (FIRDatabaseQuery) and an array of NSSortDescriptors.
-     * Use this if you would like the array to be sorted after being received from the server, or if
-     * you would like more complex sorting behavior than an FIRDatabaseQuery can provide.
-     * It is recommended that you use FIRDatabaseQuery to filter, rather than sort, for use with this initializer.
-     * E.G. query only objects that have false for their hidden flag, then sort using Sort Descriptors.
-     * @param query A query on a Firebase reference which provides filtered data to FirebaseArray
-     * @param sortDescriptors The sort descriptors by which the array should be ordered. If the array is
-     * empty or nil, the array is ordered by [snapshot1.key compare:snapshot2.key]
-     * @return The instance of FirebaseArray
-     */
-    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?) {
-        self.init(query: query, sortDescriptors: sortDescriptors, predicate: nil)
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FilterBlock?) {
+        self.init(query: query, sortOrderBlock: FirebaseArray.getSortOrderBlock(from: sortDescriptors), filterBlock: filterBlock)
     }
     
-    /**
-     * Initializes FirebaseArray with a standard Firebase reference and an NSPredicate.
-     * Use this if you would like the array to be sorted after being received from the server, or if
-     * you would like more complex sorting or filtering behavior than an FIRDatabaseQuery can provide.
-     * @param ref The Firebase reference which provides data to FirebaseArray
-     * @param predicate The predicate by which the snapshots are filtered. If predicate is nil, the array
-     * reflects all results from the Firebase Query or Reference.
-     * @return The instance of FirebaseArray
-     */
-    convenience init(ref: FIRDatabaseReference, predicate: NSPredicate?) {
-        self.init(query: ref, sortDescriptors: nil, predicate: predicate)
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: SortOrderBlock?, predicate: NSPredicate?) {
+        self.init(query: query, sortOrderBlock: sortOrderBlock, filterBlock: FirebaseArray.getFilterBlock(from: predicate))
     }
     
-    /**
-     * Initializes FirebaseArray with a Firebase query (FIRDatabaseQuery) and an NSPredicate.
-     * Use this if you would like the array to be sorted after being received from the server, or if
-     * you would like more complex sorting or filtering behavior than an FIRDatabaseQuery can provide.
-     * @param query A query on a Firebase reference which provides filtered data to FirebaseArray
-     * @param predicate The predicate by which the snapshots are filtered. If predicate is nil, the array
-     * reflects all results from the Firebase Query or Reference.
-     * @return The instance of FirebaseArray
-     */
-    convenience init(query: FIRDatabaseQuery, predicate: NSPredicate?) {
-        self.init(query: query, sortDescriptors: nil, predicate: predicate)
-    }
-    
-    /**
-     * Initializes FirebaseArray with a standard Firebase reference, an array of NSSortDescriptors, and an
-     * NSPredicate.
-     * Use this if you would like the array to be sorted after being received from the server, or if
-     * you would like more complex sorting or filtering behavior than an FIRDatabaseQuery can provide.
-     * @param query A query on a Firebase reference which provides filtered data to FirebaseArray
-     * @param sortDescriptors The sort descriptors by which the array should be ordered. If the array is
-     * empty or nil, the array is ordered by [snapshot1.key compare:snapshot2.key]
-     * @param predicate The predicate by which the snapshots are filtered. If predicate is nil, the array
-     * reflects all results from the Firebase Query or Reference.
-     * @return The instance of FirebaseArray
-     */
-    convenience init(ref: FIRDatabaseReference, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?) {
-        self.init(query: ref, sortDescriptors: sortDescriptors, predicate: predicate)
-    }
-    
-    /**
-     * Initializes FirebaseArray with a Firebase query (FIRDatabaseQuery), an array of NSSortDescriptors, and an
-     * NSPredicate.
-     * Use this if you would like the array to be sorted after being received from the server, or if
-     * you would like more complex sorting or filtering behavior than an FIRDatabaseQuery can provide.
-     * @param query A query on a Firebase reference which provides filtered data to FirebaseArray
-     * @param sortDescriptors The sort descriptors by which the array should be ordered. If the array is
-     * empty or nil, the array is ordered by [snapshot1.key compare:snapshot2.key]
-     * @param predicate The predicate by which the snapshots are filtered. If predicate is nil, the array
-     * reflects all results from the Firebase Query or Reference.
-     * @return The instance of FirebaseArray
-     */
-    init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?) {
+    init(query: FIRDatabaseQuery, sortOrderBlock: SortOrderBlock?, filterBlock: FilterBlock?) {
         self.query = query
-        self.predicate = predicate
-        super.init()
-        self.setSortOrder(with: sortDescriptors)
-        self.initListeners()
-    }
-    
-    init(query: FIRDatabaseQuery, predicate: NSPredicate?, sortOrderBlock: SortOrderBlock?) {
-        self.query = query
-        self.predicate = predicate
+        self.filterBlock = filterBlock
         self.sortOrderBlock = sortOrderBlock
         super.init()
         self.initListeners()
     }
     
     deinit {
-        for handle in self.observerHandles {
-            self.query.removeObserver(withHandle: handle)
+        for handle in observerHandles {
+            query.removeObserver(withHandle: handle)
         }
     }
     
     // MARK: - Private API methods
     
     private var models = [Model]()
+    private lazy var hiddenModels = [String : Model]()
     private var isInitialized = false
     private lazy var observerHandles = [UInt]()
     private lazy var keys = Set<String>()
@@ -156,83 +79,124 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
     private func initListeners() {
         
         let cancelHandler: (Error)->Void = { (error: Error) in
-            self.delegate?.cancelledWithError?(error: error)
+            self.delegate?.cancelled(with: error)
         }
         
         let valueHandler = { (snapshot: FIRDataSnapshot) in
             for childSnap in snapshot.children.allObjects {
-                guard let childSnap = childSnap as? FIRDataSnapshot else { break }
-                guard let object = Model(snapshot: childSnap) else { break }
-                let index = self.insertionIndex(of: object)
-                self.models.insert(object, at: index)
-                self.keys.insert(object.key)
+                guard let childSnap = childSnap as? FIRDataSnapshot,
+                    let model = Model(snapshot: childSnap)
+                    else { break }
+                let index = self.insertionIndex(of: model)
+                self.keys.insert(model.key)
+                
+                // Check if result should be filtered
+                if let filterBlock = self.filterBlock, !filterBlock(model) {
+                    self.hiddenModels[model.key] = model
+                } else {
+                    self.models.insert(model, at: index)
+                }
+                
             }
-            self.delegate?.initialized?(objects: self.models)
+            self.delegate?.initialized(children: self.models)
             self.isInitialized = true
         }
         
         let addHandler = { (snapshot: FIRDataSnapshot) in
-            guard self.isInitialized, let object = Model(snapshot: snapshot), !self.keys.contains(snapshot.key) else { return }
-            let index = self.insertionIndex(of: object)
-            self.models.insert(object, at: index)
-            self.delegate?.childAdded?(object: object, at: index)
-        }
-        
-        let changeHandler = { (snapshot: FIRDataSnapshot) in
-            if let index = self.indexForKey(snapshot.key) {
-                guard let object = Model(snapshot: snapshot) else { return }
-                self.models.remove(at: index)
-                let insertionIndex = self.insertionIndex(of: object)
-                self.models.insert(object, at: insertionIndex)
-                
-                self.delegate?.childChanged?(object: object, at: index)
-                if index != insertionIndex {
-                    self.delegate?.childMoved?(object: object, from: index, to: insertionIndex)
-                }
+            guard self.isInitialized, let model = Model(snapshot: snapshot) else { return }
+            
+            // Check if result should be filtered
+            if let filterBlock = self.filterBlock, !filterBlock(model) {
+                self.hiddenModels[model.key] = model
+                return
             }
+            
+            if !self.keys.contains(model.key) {
+                let index = self.insertionIndex(of: model)
+                self.models.insert(model, at: index)
+                self.delegate?.added(child: model, at: index)
+            }
+            
         }
         
         let removeHandler = { (snapshot: FIRDataSnapshot) in
-            if let index = self.indexForKey(snapshot.key) {
-                let object = self.models[index]
-                self.keys.remove(object.key)
+            if let index = self.index(of: snapshot.key) {
+                let model = self.models[index]
+                self.keys.remove(model.key)
                 self.models.remove(at: index)
-                self.delegate?.childRemoved?(object: object, at: index)
+                self.hiddenModels.removeValue(forKey: model.key)
+                self.delegate?.removed(child: model, at: index)
             }
+        }
+        
+        let changeHandler = { (snapshot: FIRDataSnapshot) in
+            let index = self.index(of: snapshot.key)
+            guard let model = Model(snapshot: snapshot) else { return }
+            
+            if let filterBlock = self.filterBlock {
+                let shouldFilterModel = !filterBlock(model)
+                
+                // Check if result should be filtered, remove from models and put in hiddenModels if so
+                if shouldFilterModel {
+                    self.hiddenModels[model.key] = model
+                    
+                    if let index = index {
+                        self.models.remove(at: index)
+                        self.keys.remove(model.key)
+                        self.delegate?.removed(child: model, at: index)
+                    }
+                    return
+                } else if self.hiddenModels[model.key] != nil {
+                    // Model is currently hidden, but now should not be. Put in models and show.
+                    let index = self.add(hiddenModel: model)
+                    self.delegate?.added(child: model, at: index)
+                }
+            }
+            
+            if let index = index {
+                let insertionIndex = self.sortOrderBlock == nil ? index : self.insertionIndex(of: model)
+                self.models.remove(at: index)
+                self.models.insert(model, at: insertionIndex)
+                self.delegate?.changed(child: model, at: index)
+                
+                if self.sortOrderBlock != nil && index != insertionIndex {
+                    self.delegate?.moved(child: model, from: index, to: insertionIndex)
+                }
+                
+            }
+            
         }
         
         let moveHandler = { (snapshot: FIRDataSnapshot) in
-            if let oldIndex = self.indexForKey(snapshot.key) {
+            if let oldIndex = self.index(of: snapshot.key), let model = Model(snapshot: snapshot) {
                 self.models.remove(at: oldIndex)
-                
-                guard let object = Model(snapshot: snapshot) else { return }
-                let newIndex = self.insertionIndex(of: object)
-                self.models.insert(object, at: newIndex)
-                self.delegate?.childMoved?(object: object, from: oldIndex, to: newIndex)
+                let newIndex = self.insertionIndex(of: model)
+                self.models.insert(model, at: newIndex)
+                self.delegate?.moved(child: model, from: oldIndex, to: newIndex)
             }
         }
         
-        self.query.observeSingleEvent(of: .value, with: valueHandler, withCancel: cancelHandler)
-        let added = self.query.observe(.childAdded, with: addHandler, withCancel: cancelHandler)
-        let changed = self.query.observe(.childChanged, with: changeHandler, withCancel: cancelHandler)
-        let removed = self.query.observe(.childRemoved, with: removeHandler, withCancel: cancelHandler)
-        let moved = self.query.observe(.childMoved, with: moveHandler, withCancel: cancelHandler)
+        query.observeSingleEvent(of: .value, with: valueHandler, withCancel: cancelHandler)
+        let added = query.observe(.childAdded, with: addHandler, withCancel: cancelHandler)
+        let changed = query.observe(.childChanged, with: changeHandler, withCancel: cancelHandler)
+        let removed = query.observe(.childRemoved, with: removeHandler, withCancel: cancelHandler)
+        let moved = query.observe(.childMoved, with: moveHandler, withCancel: cancelHandler)
         
-        self.observerHandles = [added, changed, removed, moved]
+        observerHandles = [added, changed, removed, moved]
     }
     
-    func compare(model: Model, with aModel: Model) -> ComparisonResult {
+    func compare(model: Model, with aModel: Model) -> ComparisonResult? {
         let m1 = model
         let m2 = aModel
         
-        if let sortOrderBlock = self.sortOrderBlock {
+        if let sortOrderBlock = sortOrderBlock {
             return sortOrderBlock(m1, m2)
         }
         return m1.key.compare(m2.key)
     }
     
-    private func indexForKey(_ key: String) -> Int? {
-        return self.models.index(where: { (snapshot) -> Bool in
+    private func index(of key: String) -> Index? {
+        return models.index(where: { (snapshot) -> Bool in
             if snapshot.key == key {
                 return true
             }
@@ -240,29 +204,74 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
         })
     }
     
-    private func insertionIndex(of object: Model) -> Int {
-        return self.models.insertionIndex(of: object) { (s1, s2) -> Bool in
-            return self.compare(model: s1, with: s2) == .orderedAscending
+    private func insertionIndex(of object: Model) -> Index {
+        if sortOrderBlock != nil {
+            return models.insertionIndex(of: object) { (s1, s2) -> Bool in
+                return compare(model: s1, with: s2) == .orderedAscending
+            }
         }
+        return self.models.count
     }
     
     // MARK: - Public API methods
     
-    func setSortOrder(with sortOrderBlock: SortOrderBlock?) {
-        self.sortOrderBlock = sortOrderBlock
-        if let sortOrderBlock = sortOrderBlock {
-            self.models.sort(by: { (m1, m2) -> Bool in
-                return sortOrderBlock(m1, m2) == .orderedAscending
-            })
-        } else {
-            self.models.sort(by: { (m1, m2) -> Bool in
-                return m1.key.compare(m2.key) == .orderedAscending
-            })
+    private static func getFilterBlock(from predicate: NSPredicate?) -> FilterBlock? {
+        var filterBlock: FilterBlock?
+        
+        if let predicate = predicate {
+            filterBlock = { (model: Model) -> Bool in
+                return predicate.evaluate(with: model)
+            }
         }
-        self.delegate?.changedSortOrder?(objects: self.models)
+        
+        return filterBlock
     }
     
-    func setSortOrder(with sortDescriptors: [NSSortDescriptor]?) {
+    private func add(hiddenModel: Model) -> Index {
+        hiddenModels.removeValue(forKey: hiddenModel.key)
+        let index = insertionIndex(of: hiddenModel)
+        models.insert(hiddenModel, at: index)
+        keys.insert(hiddenModel.key)
+        return index
+    }
+    
+    func setFilter(with filterBlock: FilterBlock?) {
+        self.filterBlock = filterBlock
+        
+        delegate?.beginUpdates()
+        if let filterBlock = filterBlock {
+            // Hide visible models that should now be hidden
+            for (index, model) in models.enumerated().reversed() {
+                if !filterBlock(model) {
+                    hiddenModels[model.key] = model
+                    models.remove(at: index)
+                    keys.remove(model.key)
+                    delegate?.removed(child: model, at: index)
+                }
+            }
+            
+        }
+        
+        // Show hidden models that should now be visible
+        let oldModels = models
+        for (_, hidden) in hiddenModels {
+            if filterBlock == nil || filterBlock!(hidden) {
+                _ = add(hiddenModel: hidden)
+            }
+        }
+        let diff = oldModels.diff(models)
+        for index in diff.addedIndexes {
+            delegate?.added(child: models[index], at: index)
+        }
+        
+        delegate?.endUpdates()
+    }
+    
+    func setFilter(with predicate: NSPredicate?) {
+        setFilter(with: FirebaseArray.getFilterBlock(from: predicate))
+    }
+    
+    private static func getSortOrderBlock(from sortDescriptors: [NSSortDescriptor]?) -> SortOrderBlock? {
         var sortOrderBlock: SortOrderBlock?
         if let sortDescriptors = sortDescriptors, !sortDescriptors.isEmpty {
             sortOrderBlock = { (m1: Model, m2: Model) -> ComparisonResult in
@@ -281,8 +290,25 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
                 
             }
         }
-        
-        self.setSortOrder(with: sortOrderBlock)
+        return sortOrderBlock
+    }
+    
+    func setSortOrder(with sortOrderBlock: SortOrderBlock?) {
+        self.sortOrderBlock = sortOrderBlock
+        if let sortOrderBlock = sortOrderBlock {
+            self.models.sort(by: { (m1, m2) -> Bool in
+                return sortOrderBlock(m1, m2) == .orderedAscending
+            })
+        } else {
+            self.models.sort(by: { (m1, m2) -> Bool in
+                return m1.key.compare(m2.key) == .orderedAscending
+            })
+        }
+        delegate?.changedSortOrder(of: models)
+    }
+    
+    func setSortOrder(with sortDescriptors: [NSSortDescriptor]?) {
+        setSortOrder(with: FirebaseArray.getSortOrderBlock(from: sortDescriptors))
     }
     
     /**
@@ -291,7 +317,7 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
      * @return The object at the given index
      */
     func object(at index: Int) -> Model {
-        return self.models[index]
+        return models[index]
     }
     
     /**
@@ -300,13 +326,13 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
      * @return A Firebase reference for the object at the given index
      */
     func ref(for index: Int) -> FIRDatabaseReference {
-        return self.models[index].ref
+        return models[index].ref
     }
     
-    var startIndex: Int {
+    var startIndex: Index {
         return 0
     }
-    var endIndex: Int {
+    var endIndex: Index {
         return count
     }
     
@@ -315,16 +341,16 @@ class FirebaseArray<Model: FirebaseModel>: NSObject, Collection {
      * @return The count of objects in the FirebaseArray
      */
     var count: Int {
-        return self.models.count
+        return models.count
     }
     
     subscript(index: Int) -> Model {
-        return self.models[index]
+        return models[index]
     }
     
     subscript(key: String) -> Model? {
-        if let index = self.indexForKey(key) {
-            return self.models[index]
+        if let index = index(of: key) {
+            return models[index]
         }
         return nil
     }
