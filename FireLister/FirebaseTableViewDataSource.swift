@@ -36,61 +36,230 @@ class FirebaseTableViewDataSource<Model: FirebaseModel>: FirebaseDataSource<Mode
     private lazy var sections = [String : [Model]]()
     private lazy var sectionNames = [String]()
     
-    init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, cellClass: AnyClass?, cellReuseIdentifier: String, tableView: UITableView?) {
-        
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
-        self.reuseIdentifier = cellReuseIdentifier
-        super.init(array: array)
-        
-        self.tableView = tableView
-        
-        self.tableView?.register(cellClass, forCellReuseIdentifier: reuseIdentifier)
+    // TODO: Add convenience initializers, documentation
+    
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, filterBlock: FirebaseArray<Model>.FilterBlock?, cellClass: AnyClass?, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
+        tableView?.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
     }
     
-    init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, prototypeReuseIdentifier: String, tableView: UITableView?) {
-        
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
-        self.reuseIdentifier = prototypeReuseIdentifier
-        super.init(array: array)
-        
-        self.tableView = tableView
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, filterBlock: FirebaseArray<Model>.FilterBlock?, prototypeReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
+        self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, tableView: tableView)
     }
     
-    init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, nibNamed nibName: String, cellReuseIdentifier: String, tableView: UITableView) {
-        
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
-        self.reuseIdentifier = cellReuseIdentifier
-        super.init(array: array)
-        
-        self.tableView = tableView
-        
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, filterBlock: FirebaseArray<Model>.FilterBlock?, nibNamed nibName: String, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
         let nib = UINib(nibName: nibName, bundle: nil)
-        self.tableView?.register(nib, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView?.register(nib, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<Model>.FilterBlock?, cellClass: AnyClass?, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
+        tableView?.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<Model>.FilterBlock?, prototypeReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
+        self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<Model>.FilterBlock?, nibNamed nibName: String, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
+        let nib = UINib(nibName: nibName, bundle: nil)
+        tableView?.register(nib, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, predicate: NSPredicate?, cellClass: AnyClass?, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
+        tableView?.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, predicate: NSPredicate?, prototypeReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
+        self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, predicate: NSPredicate?, nibNamed nibName: String, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
+        let nib = UINib(nibName: nibName, bundle: nil)
+        tableView?.register(nib, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, cellClass: AnyClass?, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
+        tableView?.register(cellClass, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, prototypeReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
+        self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, tableView: tableView)
+    }
+    
+    convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, nibNamed nibName: String, cellReuseIdentifier: String, tableView: UITableView?) {
+        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
+        let nib = UINib(nibName: nibName, bundle: nil)
+        tableView?.register(nib, forCellReuseIdentifier: cellReuseIdentifier)
+        self.init(array: array, reuseIdentifier: cellReuseIdentifier, tableView: tableView)
+    }
+    
+    init(array: FirebaseArray<Model>, reuseIdentifier: String, tableView: UITableView?) {
+        self.reuseIdentifier = reuseIdentifier
+        super.init(array: array)
+        self.tableView = tableView
     }
     
     // MARK: - FirebaseArrayDelegate methods
     
-    func initialized(objects: [FirebaseModel]) {
-        self.tableView?.reloadData()
+    override func beginUpdates() {
+        tableView?.beginUpdates()
     }
     
-    func childAdded(object: FirebaseModel, at index: Int) {
-        self.handleAdd(object as! Model, at: index)
+    override func endUpdates() {
+        tableView?.endUpdates()
     }
     
-    func childChanged(object: FirebaseModel, at index: Int) {
-        self.handleChange(object as! Model, at: index)
+    override func initialized<T : FirebaseModel>(children: [T]) {
+        tableView?.reloadData()
     }
     
-    func childRemoved(object: FirebaseModel, at index: Int) {
-        self.handleRemove(object as! Model, at: index)
+    override func added<T : FirebaseModel>(child: T, at index: Int) {
+        guard let child = child as? Model else { return }
+        if let sectionNameBlock = self.sectionNameBlock {
+            // tableView is sectioned
+            let sectionName = sectionNameBlock(child) ?? ""
+            if var insertionSection = self.sections[sectionName] {
+                // Section exists, insert snapshot in correct index
+                let index = insertionSection.insertionIndex(of: child, { (s1, s2) -> Bool in
+                    return self.array.compare(model: s1, with: s2) == .orderedAscending
+                })
+                insertionSection.insert(child, at: index)
+                self.sections[sectionName] = insertionSection
+                
+                let sectionIndex = self.sectionNames.index(of: sectionName)!
+                let indexPath = IndexPath(row: index, section: sectionIndex)
+                self.tableView?.insertRows(at: [indexPath], with: .automatic)
+            } else {
+                // Section does not exist, create new section
+                var sectionIndex: Int!
+                self.sections[sectionName] = [child]
+                if index == 0 {
+                    sectionIndex = 0
+                    self.sectionNames.insert(sectionName, at: 0)
+                } else {
+                    sectionIndex = self.indexPath(of: self.array[index - 1].key)!.section + 1
+                    self.sectionNames.insert(sectionName, at: sectionIndex)
+                }
+                self.tableView?.insertSections([sectionIndex], with: .automatic)
+            }
+        } else {
+            // tableView is not sectioned
+            if self.tableView?.numberOfSections == 0 {
+                self.tableView?.insertSections([0], with: .automatic)
+            } else {
+                let indexPath = IndexPath(row: index, section: 0)
+                self.tableView?.insertRows(at: [indexPath], with: .automatic)
+            }
+        }
     }
     
-    func childMoved(object: FirebaseModel, from oldIndex: Int, to newIndex: Int) {
-        self.handleMove(object as! Model, from: oldIndex, to: newIndex)
+    override func changed<T : FirebaseModel>(child: T, at index: Int) {
+        guard let child = child as? Model else { return }
+        if let sectionNameBlock = self.sectionNameBlock {
+            // tableView is sectioned
+            let sectionName = sectionNameBlock(child) ?? ""
+            if var section = self.sections[sectionName] {
+                // Section exists, find index of changed snapshot
+                
+                let index = section.index(where: { (snap) -> Bool in
+                    return snap.key == child.key
+                })!
+                section[index] = child
+                self.sections[sectionName] = section
+                
+                let sectionIndex = self.sectionNames.index(of: sectionName)!
+                let indexPath = IndexPath(row: index, section: sectionIndex)
+                self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+            }
+        } else {
+            // tableView is not sectioned
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
     
-    func changedSortOrder(objects: [FirebaseModel]) {
+    override func removed<T : FirebaseModel>(child: T, at index: Int) {
+        guard let child = child as? Model else { return }
+        if let sectionNameBlock = self.sectionNameBlock {
+            // tableView is sectioned
+            let sectionName = sectionNameBlock(child) ?? ""
+            if var section = self.sections[sectionName] {
+                // Section exists, find index of removed snapshot
+                let index = section.index(where: { (snap) -> Bool in
+                    return snap.key == child.key
+                })!
+                section.remove(at: index)
+                self.sections[sectionName] = section
+                
+                let sectionIndex = self.sectionNames.index(of: sectionName)!
+                if section.isEmpty {
+                    self.sectionNames.remove(at: sectionIndex)
+                    self.sections.removeValue(forKey: sectionName)
+                    self.tableView?.deleteSections([sectionIndex], with: .automatic)
+                } else {
+                    let indexPath = IndexPath(row: index, section: sectionIndex)
+                    self.tableView?.deleteRows(at: [indexPath], with: .automatic)
+                }
+            }
+        } else {
+            // tableView is not sectioned
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView?.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    override func moved<T : FirebaseModel>(child: T, from oldIndex: Int, to newIndex: Int) {
+        guard let child = child as? Model else { return }
+        if let sectionNameBlock = self.sectionNameBlock {
+            // tableView is sectioned
+            let sectionName = sectionNameBlock(child) ?? ""
+            if var section = self.sections[sectionName] {
+                // Section exists, insert snapshot in correct index
+                let oldIndex = section.index(where: { (model) -> Bool in
+                    return model.key == child.key
+                })!
+                section.remove(at: oldIndex)
+                let newIndex = section.insertionIndex(of: child, { (m1, m2) -> Bool in
+                    return self.array.compare(model: m1, with: m2) == .orderedAscending
+                })
+                section.insert(child, at: newIndex)
+                self.sections[sectionName] = section
+                
+                let sectionIndex = self.sectionNames.index(of: sectionName)!
+                let oldIndexPath = IndexPath(row: oldIndex, section: sectionIndex), newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
+                self.tableView?.moveRow(at: oldIndexPath, to: newIndexPath)
+            } else {
+                // Section does not exist, create new section
+                self.sections[sectionName] = [child]
+                let sectionIndex = self.sectionNames.count
+                self.sectionNames.append(sectionName)
+                self.tableView?.insertSections([sectionIndex], with: .automatic)
+            }
+        } else {
+            // tableView is not sectioned
+            let oldIndexPath = IndexPath(row: oldIndex, section: 0), newIndexPath =  IndexPath(row: newIndex, section: 0)
+            self.tableView?.moveRow(at: oldIndexPath, to: newIndexPath)
+        }
+    }
+    
+    override func changedSortOrder<T : FirebaseModel>(of children: [T]) {
         self.updateSections()
         self.tableView?.reloadData()
     }
@@ -164,7 +333,7 @@ class FirebaseTableViewDataSource<Model: FirebaseModel>: FirebaseDataSource<Mode
         return super.object(at: indexPath)
     }
     
-    func indexPathOf(key: String) -> IndexPath? {
+    func indexPath(of key: String) -> IndexPath? {
         if self.sectionNameBlock != nil {
             for (value, section) in self.sections {
                 for (index, item) in section.enumerated() {
@@ -176,7 +345,7 @@ class FirebaseTableViewDataSource<Model: FirebaseModel>: FirebaseDataSource<Mode
             }
             return nil
         }
-        guard let index = self.array.index(where: { (model: FirebaseModel) -> Bool in
+        guard let index = self.array.index(where: { (model: Model) -> Bool in
             return key == model.key
         })
             else { return nil }
@@ -213,133 +382,6 @@ class FirebaseTableViewDataSource<Model: FirebaseModel>: FirebaseDataSource<Mode
                 self.sections[sectionName] = [object]
                 self.sectionNames.append(sectionName)
             }
-        }
-    }
-    
-    private func handleAdd(_ object: Model, at index: Int) {
-        if let sectionNameBlock = self.sectionNameBlock {
-            // tableView is sectioned
-            let sectionName = sectionNameBlock(object) ?? ""
-            if var insertionSection = self.sections[sectionName] {
-                // Section exists, insert snapshot in correct index
-                let index = insertionSection.insertionIndex(of: object, { (s1, s2) -> Bool in
-                    return self.array.compare(model: s1, with: s2) == .orderedAscending
-                })
-                insertionSection.insert(object, at: index)
-                self.sections[sectionName] = insertionSection
-                
-                let sectionIndex = self.sectionNames.index(of: sectionName)!
-                let indexPath = IndexPath(row: index, section: sectionIndex)
-                self.tableView?.insertRows(at: [indexPath], with: .automatic)
-            } else {
-                // Section does not exist, create new section
-                var sectionIndex: Int!
-                self.sections[sectionName] = [object]
-                if index == 0 {
-                    sectionIndex = 0
-                    self.sectionNames.insert(sectionName, at: 0)
-                } else {
-                    sectionIndex = self.indexPathOf(key: self.array[index - 1].key)!.section + 1
-                    self.sectionNames.insert(sectionName, at: sectionIndex)
-                }
-                self.tableView?.insertSections([sectionIndex], with: .automatic)
-            }
-        } else {
-            // tableView is not sectioned
-            if self.tableView?.numberOfSections == 0 {
-                self.tableView?.insertSections([0], with: .automatic)
-            } else {
-                let indexPath = IndexPath(row: index, section: 0)
-                self.tableView?.insertRows(at: [indexPath], with: .automatic)
-            }
-        }
-    }
-    
-    private func handleChange(_ object: Model, at index: Int) {
-        if let sectionNameBlock = self.sectionNameBlock {
-            // tableView is sectioned
-            let sectionName = sectionNameBlock(object) ?? ""
-            if var section = self.sections[sectionName] {
-                // Section exists, find index of changed snapshot
-                
-                let index = section.index(where: { (snap) -> Bool in
-                    return snap.key == object.key
-                })!
-                section[index] = object
-                self.sections[sectionName] = section
-                
-                let sectionIndex = self.sectionNames.index(of: sectionName)!
-                let indexPath = IndexPath(row: index, section: sectionIndex)
-                self.tableView?.reloadRows(at: [indexPath], with: .automatic)
-            }
-        } else {
-            // tableView is not sectioned
-            let indexPath = IndexPath(row: index, section: 0)
-            self.tableView?.reloadRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    private func handleRemove(_ object: Model, at index: Int) {
-        if let sectionNameBlock = self.sectionNameBlock {
-            // tableView is sectioned
-            let sectionName = sectionNameBlock(object) ?? ""
-            if var section = self.sections[sectionName] {
-                // Section exists, find index of removed snapshot
-                let index = section.index(where: { (snap) -> Bool in
-                    return snap.key == object.key
-                })!
-                section.remove(at: index)
-                self.sections[sectionName] = section
-                
-                let sectionIndex = self.sectionNames.index(of: sectionName)!
-                if section.isEmpty {
-                    self.sectionNames.remove(at: sectionIndex)
-                    self.sections.removeValue(forKey: sectionName)
-                    self.tableView?.deleteSections([sectionIndex], with: .automatic)
-                } else {
-                    let indexPath = IndexPath(row: index, section: sectionIndex)
-                    self.tableView?.deleteRows(at: [indexPath], with: .automatic)
-                }
-            }
-        } else {
-            // tableView is not sectioned
-            let indexPath = IndexPath(row: index, section: 0)
-            self.tableView?.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    func handleMove(_ object: Model, from oldIndex: Int, to newIndex: Int) {
-        if let sectionNameBlock = self.sectionNameBlock {
-            // tableView is sectioned
-            let sectionName = sectionNameBlock(object) ?? ""
-            if var section = self.sections[sectionName] {
-                // Section exists, insert snapshot in correct index
-                let oldIndex = section.index(where: { (model) -> Bool in
-                    return model.key == object.key
-                })!
-                section.remove(at: oldIndex)
-                let newIndex = section.insertionIndex(of: object, { (m1, m2) -> Bool in
-                    return self.array.compare(model: m1, with: m2) == .orderedAscending
-                })
-                print(oldIndex)
-                print(newIndex)
-                section.insert(object, at: newIndex)
-                self.sections[sectionName] = section
-                
-                let sectionIndex = self.sectionNames.index(of: sectionName)!
-                let oldIndexPath = IndexPath(row: oldIndex, section: sectionIndex), newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
-                self.tableView?.moveRow(at: oldIndexPath, to: newIndexPath)
-            } else {
-                // Section does not exist, create new section
-                self.sections[sectionName] = [object]
-                let sectionIndex = self.sectionNames.count
-                self.sectionNames.append(sectionName)
-                self.tableView?.insertSections([sectionIndex], with: .automatic)
-            }
-        } else {
-            // tableView is not sectioned
-            let oldIndexPath = IndexPath(row: oldIndex, section: 0), newIndexPath =  IndexPath(row: newIndex, section: 0)
-            self.tableView?.moveRow(at: oldIndexPath, to: newIndexPath)
         }
     }
     

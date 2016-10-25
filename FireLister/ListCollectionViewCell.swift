@@ -9,6 +9,5 @@
 import UIKit
 
 class ListCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var titleLabel: UILabel!
 }

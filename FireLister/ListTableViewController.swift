@@ -11,13 +11,15 @@ import FirebaseDatabase
 
 class ListTableViewController: UITableViewController {
 
+    private let predicate = NSPredicate(format: "completed == FALSE")
+    
     var list: List? {
         didSet {
-            guard let listID = list?.key else { return }
+            guard let list = list else { return }
             // Configure reminders FirebaseArray
             let ref = FIRDatabase.database().reference().child("reminders")
-            let query = ref.queryOrdered(byChild: "lid").queryEqual(toValue: listID)
-            remindersDataSource = FirebaseTableViewDataSource(query: query, sortDescriptors: nil, predicate: nil, prototypeReuseIdentifier: "ReminderCell", tableView: tableView)
+            let query = ref.queryOrdered(byChild: "lid").queryEqual(toValue: list.key)
+            remindersDataSource = FirebaseTableViewDataSource(query: query, sortDescriptors: [NSSortDescriptor(key: "key", ascending: true)], predicate: predicate, prototypeReuseIdentifier: "ReminderCell", tableView: tableView)
             remindersDataSource?.populateCell { (cell, reminder) in
                 let cell = cell as! ReminderTableViewCell
                 cell.reminder = reminder
@@ -30,20 +32,23 @@ class ListTableViewController: UITableViewController {
                 cell.dateLabel.text = detailText
                 
                 let frame = CGRect(x: 0, y: 0, width: 22, height: 22)
-                cell.completedButton.setImage(ColorCircleView.image(in: frame, state: .empty, color: self.list!.color), for: .normal)
-                cell.completedButton.setImage(ColorCircleView.image(in: frame, state: .selected, color: self.list!.color), for: .selected)
-                cell.completedButton.setImage(ColorCircleView.image(in: frame, state: .selected, color: self.list!.color), for: .highlighted)
+                let emptyImage = ColorCircleView.image(in: frame, state: .empty, color: self.list!.color)
+                let selectedImage = ColorCircleView.image(in: frame, state: .selected, color: self.list!.color)
+                cell.completedButton.setImage(emptyImage, for: .normal)
+                cell.completedButton.setImage(selectedImage, for: .selected)
+                cell.completedButton.setImage(selectedImage, for: .highlighted)
                 cell.completedButton.isSelected = reminder.isCompleted
             }
             
             // Set view controller's title
-            navigationItem.title = listID
+            navigationItem.title = list.title
         }
     }
     var detailViewController: ReminderDetailTableViewController? = nil
     var remindersDataSource: FirebaseTableViewDataSource<Reminder>?
     fileprivate var newReminderText: String?
     fileprivate var newReminderTextField: UITextField?
+    private var isShowingCompleted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,6 +148,16 @@ class ListTableViewController: UITableViewController {
         addReminder()
     }
 
+    @IBAction func didPressShowCompleted(_ sender: UIBarButtonItem) {
+        isShowingCompleted = !isShowingCompleted
+        if isShowingCompleted {
+            remindersDataSource?.array.setFilter(with: nil)
+            sender.title = "Hide Completed"
+        } else {
+            remindersDataSource?.array.setFilter(with: predicate)
+            sender.title = "Show Completed"
+        }
+    }
 }
 
 extension ListTableViewController: UITextFieldDelegate {

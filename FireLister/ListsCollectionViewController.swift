@@ -17,7 +17,7 @@ class ListsCollectionViewController: UICollectionViewController {
     var userID: String? {
         didSet {
             if let userID = userID {
-                let query = FIRDatabase.database().reference().child("lists").queryOrdered(byChild: "uid").queryEqual(toValue: userID) //queryEqual(toValue: userID, childKey: "uid")
+                let query = FIRDatabase.database().reference().child("lists").queryOrdered(byChild: "uid").queryEqual(toValue: userID)
                 lists = FirebaseArray<List>(query: query)
                 lists?.delegate = self
             }
@@ -89,7 +89,7 @@ class ListsCollectionViewController: UICollectionViewController {
             let cell = collectionView?.cellForItem(at: indexPath),
             let list = lists?[indexPath.row] {
             
-            let alert = UIAlertController(title: "Delete \(list.key)", message: "Are you sure you want to delete the list \"\(list.key)\"?", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Delete \(list.title)", message: "Are you sure you want to delete the list \"\(list.title)\"?", preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                 // Do nothing
             }
@@ -110,23 +110,23 @@ class ListsCollectionViewController: UICollectionViewController {
 
 extension ListsCollectionViewController: FirebaseArrayDelegate {
     
-    func initialized(objects: [FirebaseModel]) {
+    func initialized<Model : FirebaseModel>(children: [Model]) {
         collectionView?.reloadData()
     }
-    
-    func childAdded(object: FirebaseModel, at index: Int) {
+
+    func added<Model : FirebaseModel>(child: Model, at index: Int) {
         collectionView?.insertItems(at: [IndexPath(item: index, section: 0)])
     }
     
-    func childRemoved(object: FirebaseModel, at index: Int) {
+    func removed<Model : FirebaseModel>(child: Model, at index: Int) {
         collectionView?.deleteItems(at: [IndexPath(item: index, section: 0)])
     }
-    
-    func childChanged(object: FirebaseModel, at index: Int) {
+
+    func changed<Model : FirebaseModel>(child: Model, at index: Int) {
         collectionView?.reloadItems(at: [IndexPath(item: index, section: 0)])
     }
     
-    func childMoved(object: FirebaseModel, from oldIndex: Int, to newIndex: Int) {
+    func moved<Model : FirebaseModel>(child: Model, from oldIndex: Int, to newIndex: Int) {
         collectionView?.moveItem(at: IndexPath(item: oldIndex, section: 0), to: IndexPath(item: newIndex, section: 0))
     }
     
