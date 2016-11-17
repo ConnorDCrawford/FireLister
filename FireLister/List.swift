@@ -35,17 +35,17 @@ class List: NSObject, FirebaseModel {
     
     required convenience init?(snapshot: FIRDataSnapshot) {
         // Check to make sure snapshot is valid
+        
         guard let values = snapshot.value as? [String : Any],
             let uid = values["uid"] as? String,
             let title = values["title"] as? String,
-            let red = values["red"] as? Float,
-            let green = values["green"] as? Float,
-            let blue  = values["blue"] as? Float
+            let red = values["red"] as? NSNumber,
+            let green = values["green"] as? NSNumber,
+            let blue  = values["blue"] as? NSNumber
             else {
                 // Does not contain necessary data, fail init
                 return nil
         }
-        
         let color = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
         self.init(key: snapshot.key, ref: snapshot.ref, uid: uid, title: title, color: color)
     }
@@ -53,7 +53,7 @@ class List: NSObject, FirebaseModel {
     func push(_ completionHandler: ((Error?) -> Void)?) {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0
         color.getRed(&red, green: &green, blue: &blue, alpha: nil)
-        let list: [String : Any] = [
+        let list: [NSString : Any] = [
             "uid" : uid,
             "title" : title,
             "red" : red,
