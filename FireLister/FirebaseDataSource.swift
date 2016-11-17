@@ -1,11 +1,30 @@
-import Firebase
+//
+//  Copyright (c) 2016 Google Inc.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
-class FirebaseDataSource<Model: FirebaseModel>: NSObject, FirebaseArrayDelegate {
+import FirebaseDatabase
+
+open class FirebaseDataSource<Model: FirebaseModel>: NSObject, FirebaseArrayDelegate {
     
-    var array: FirebaseArray<Model>
-    var cancelBlock: ((Error)->Void)?
+    open var array: FirebaseArray<Model>
+    open var cancelBlock: ((Error)->Void)?
     
-    init(array: FirebaseArray<Model>) {
+    lazy var sections = [String : [Model]]()
+    lazy var sectionNames = [String]()
+    
+    public init(array: FirebaseArray<Model>) {
         self.array = array
         super.init()
         
@@ -14,40 +33,39 @@ class FirebaseDataSource<Model: FirebaseModel>: NSObject, FirebaseArrayDelegate 
     
     // MARK: - API methods
     
-    var count: Int {
+    open var count: Int {
         return self.array.count
     }
     
-    func object(at indexPath: IndexPath) -> Model? {
+    open func object(at indexPath: IndexPath) -> Model? {
         if indexPath.row < self.array.count {
             return self.array[indexPath.row]
         }
         return nil
     }
     
-    func ref(for indexPath: IndexPath) -> FIRDatabaseReference? {
+    open func ref(for indexPath: IndexPath) -> FIRDatabaseReference? {
         if indexPath.row < self.array.count {
             return self.array.ref(for: indexPath.row)
         }
         return nil
     }
     
-    func cancel(with block: ((Error)->Void)?) {
+    open func cancel(with block: ((Error)->Void)?) {
         self.cancelBlock = block
     }
     
     // MARK: - FirebaseArrayDelegate methods
     
-    func beginUpdates() {}
-    func endUpdates() {}
-    func initialized<Model : FirebaseModel>(children: [Model]) {}
-    func added<Model : FirebaseModel>(child: Model, at index: Int) {}
-    func changed<Model : FirebaseModel>(child: Model, at index: Int) {}
-    func removed<Model : FirebaseModel>(child: Model, at index: Int) {}
-    func moved<Model : FirebaseModel>(child: Model, from oldIndex: Int, to newIndex: Int) {}
-    func changedSortOrder<Model : FirebaseModel>(of children: [Model]) {}
+    open func update(with block: (() -> Void)?) {}
+    open func initialized<Model : FirebaseModel>(children: [Model]) {}
+    open func added<Model : FirebaseModel>(child: Model, at index: Int) {}
+    open func changed<Model : FirebaseModel>(child: Model, at index: Int) {}
+    open func removed<Model : FirebaseModel>(child: Model, at index: Int) {}
+    open func moved<Model : FirebaseModel>(child: Model, from oldIndex: Int, to newIndex: Int) {}
+    open func changedSortOrder<Model : FirebaseModel>(of children: [Model]) {}
     
-    func cancelled(with error: Error) {
+    open func cancelled(with error: Error) {
         cancelBlock?(error)
     }
     
