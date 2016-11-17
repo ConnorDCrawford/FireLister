@@ -16,6 +16,7 @@ class ListTableViewController: UITableViewController {
     var list: List? {
         didSet {
             guard let list = list else { return }
+            
             // Configure reminders FirebaseArray
             let ref = FIRDatabase.database().reference().child("reminders")
             let query = ref.queryOrdered(byChild: "lid").queryEqual(toValue: list.key)

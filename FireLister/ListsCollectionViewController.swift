@@ -13,13 +13,23 @@ private let reuseIdentifier = "ListCell"
 
 class ListsCollectionViewController: UICollectionViewController {
 
-    private var lists: FirebaseArray<List>?
+    private var dataSource: FirebaseCollectionViewDataSource<List>?
     var userID: String? {
         didSet {
             if let userID = userID {
                 let query = FIRDatabase.database().reference().child("lists").queryOrdered(byChild: "uid").queryEqual(toValue: userID)
-                lists = FirebaseArray<List>(query: query)
-                lists?.delegate = self
+                dataSource = FirebaseCollectionViewDataSource(query: query, sortDescriptors: nil, filterBlock: nil, prototypeReuseIdentifier: reuseIdentifier, collectionView: collectionView)
+                dataSource?.populateCell(with: { (cell, model) in
+                    // Configure the cell
+                    let list = model
+                    if let cell = cell as? ListCollectionViewCell {
+                        cell.titleLabel.text = list.title
+                        cell.backgroundColor = list.color
+                        cell.layer.masksToBounds = true
+                        cell.layer.cornerRadius = 10
+                    }
+                })
+                collectionView?.dataSource = dataSource
             }
         }
     }
@@ -38,46 +48,13 @@ class ListsCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return lists == nil ? 0 : 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return lists?.count ?? 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-        if let cell = cell as? ListCollectionViewCell, let list = lists?[indexPath.row] {
-            cell.titleLabel.text = list.title
-            cell.backgroundColor = list.color
-            cell.layer.masksToBounds = true
-            cell.layer.cornerRadius = 10
-        }
-        return cell
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let listVC = segue.destination.childViewControllers.first as? ListTableViewController
-        let index = collectionView?.indexPathsForSelectedItems?.first?.row
-        listVC?.list = lists?[index!]
+        if let indexPath = collectionView?.indexPathsForSelectedItems?.first {
+            listVC?.list = dataSource?.object(at: indexPath)
+        }
         
         listVC?.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
         listVC?.navigationItem.leftItemsSupplementBackButton = true
@@ -87,7 +64,7 @@ class ListsCollectionViewController: UICollectionViewController {
         let point = sender.location(in: self.collectionView)
         if let indexPath = collectionView?.indexPathForItem(at: point),
             let cell = collectionView?.cellForItem(at: indexPath),
-            let list = lists?[indexPath.row] {
+            let list = dataSource?.object(at: indexPath) {
             
             let alert = UIAlertController(title: "Delete \(list.title)", message: "Are you sure you want to delete the list \"\(list.title)\"?", preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
@@ -108,26 +85,4 @@ class ListsCollectionViewController: UICollectionViewController {
     }
 }
 
-extension ListsCollectionViewController: FirebaseArrayDelegate {
-    
-    func initialized<Model : FirebaseModel>(children: [Model]) {
-        collectionView?.reloadData()
-    }
 
-    func added<Model : FirebaseModel>(child: Model, at index: Int) {
-        collectionView?.insertItems(at: [IndexPath(item: index, section: 0)])
-    }
-    
-    func removed<Model : FirebaseModel>(child: Model, at index: Int) {
-        collectionView?.deleteItems(at: [IndexPath(item: index, section: 0)])
-    }
-
-    func changed<Model : FirebaseModel>(child: Model, at index: Int) {
-        collectionView?.reloadItems(at: [IndexPath(item: index, section: 0)])
-    }
-    
-    func moved<Model : FirebaseModel>(child: Model, from oldIndex: Int, to newIndex: Int) {
-        collectionView?.moveItem(at: IndexPath(item: oldIndex, section: 0), to: IndexPath(item: newIndex, section: 0))
-    }
-    
-}
