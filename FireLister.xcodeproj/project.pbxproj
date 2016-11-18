@@ -31,6 +31,7 @@
 		7D5B42661DDBC143007D57DC /* SnapshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5B425F1DDBC143007D57DC /* SnapshotModel.swift */; };
 		7D5B42681DDBC235007D57DC /* PaginatedFirebaseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5B42671DDBC235007D57DC /* PaginatedFirebaseArray.swift */; };
 		7D5DDE631DDCEC6A00D41CC9 /* FirebaseCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5DDE621DDCEC6A00D41CC9 /* FirebaseCollectionViewDataSource.swift */; };
+		7D802E271DDE512000C3C937 /* PaginatedFirebaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D802E261DDE512000C3C937 /* PaginatedFirebaseTableViewDataSource.swift */; };
 		7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */; };
 		7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */; };
 		7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */; };
@@ -97,6 +98,7 @@
 		7D5B425F1DDBC143007D57DC /* SnapshotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotModel.swift; sourceTree = "<group>"; };
 		7D5B42671DDBC235007D57DC /* PaginatedFirebaseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedFirebaseArray.swift; sourceTree = "<group>"; };
 		7D5DDE621DDCEC6A00D41CC9 /* FirebaseCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		7D802E261DDE512000C3C937 /* PaginatedFirebaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedFirebaseTableViewDataSource.swift; sourceTree = "<group>"; };
 		7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderTableViewCell.swift; sourceTree = "<group>"; };
@@ -209,11 +211,12 @@
 				7D5B425D1DDBC143007D57DC /* FirebaseModel.swift */,
 				7D5B425F1DDBC143007D57DC /* SnapshotModel.swift */,
 				7D5B425A1DDBC143007D57DC /* FirebaseArray.swift */,
-				7D5B42671DDBC235007D57DC /* PaginatedFirebaseArray.swift */,
 				7D5B425B1DDBC143007D57DC /* FirebaseArrayDelegate.swift */,
+				7D5B42671DDBC235007D57DC /* PaginatedFirebaseArray.swift */,
 				7D5B425C1DDBC143007D57DC /* FirebaseDataSource.swift */,
 				7D5B425E1DDBC143007D57DC /* FirebaseTableViewDataSource.swift */,
 				7D5DDE621DDCEC6A00D41CC9 /* FirebaseCollectionViewDataSource.swift */,
+				7D802E261DDE512000C3C937 /* PaginatedFirebaseTableViewDataSource.swift */,
 				7D5B42591DDBC143007D57DC /* Array+InsertionIndex.swift */,
 			);
 			name = FirebaseDatabaseUI;
@@ -580,6 +583,7 @@
 				7DCCF81C1DAC939F00183EA6 /* TextFieldTableViewCell.swift in Sources */,
 				7D2C95E81DAFF67F00656843 /* ListCollectionViewCell.swift in Sources */,
 				7DED93041DAFE91300467615 /* List.swift in Sources */,
+				7D802E271DDE512000C3C937 /* PaginatedFirebaseTableViewDataSource.swift in Sources */,
 				7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */,
 				7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */,
 				7DCCF81E1DAC98FC00183EA6 /* RepeatTableViewController.swift in Sources */,
