@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "138F9D36758A12A389C5803E68A101CCBD132666",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "784E1C4549BE02D01EE7A1688098E01D100C43C6" : 9223372036854775807,
+    "4FEA4A0D019E33AA16CE43E6D6B2D3E876F88E8E" : 9223372036854775807,
+    "138F9D36758A12A389C5803E68A101CCBD132666" : 9223372036854775807,
+    "BE0ED10DD2BEEE835E15605992647EBBFAF35D68" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F3737105-0D3D-44CF-A0D8-4AF9362C9432",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "784E1C4549BE02D01EE7A1688098E01D100C43C6" : "TestLib\/",
+    "4FEA4A0D019E33AA16CE43E6D6B2D3E876F88E8E" : "FirebaseUI-iOS\/",
+    "138F9D36758A12A389C5803E68A101CCBD132666" : "FireLister\/",
+    "BE0ED10DD2BEEE835E15605992647EBBFAF35D68" : "FirebaseDatabaseUI\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FireLister",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FireLister.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ConnorDCrawford\/FireLister.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "138F9D36758A12A389C5803E68A101CCBD132666"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ConnorDCrawford\/FirebaseUI-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4FEA4A0D019E33AA16CE43E6D6B2D3E876F88E8E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ConnorDCrawford\/TestLib.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "784E1C4549BE02D01EE7A1688098E01D100C43C6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ConnorDCrawford\/FirebaseDatabaseUI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BE0ED10DD2BEEE835E15605992647EBBFAF35D68"
+    }
+  ]
+}

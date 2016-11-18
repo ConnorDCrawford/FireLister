@@ -64,4 +64,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-GoogleService-Info.plist
+FireLister/GoogleService-Info.plist
+Podfile.lock
+Pods/
+*.xcbkptlist
