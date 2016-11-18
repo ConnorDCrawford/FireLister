@@ -17,7 +17,7 @@
 import UIKit
 import FirebaseDatabase
 
-class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource<Model>, UICollectionViewDataSource {
+class FirebaseCollectionViewDataSource<T: FirebaseModel>: FirebaseDataSource<T>, UICollectionViewDataSource {
     
     /// The reuse identifier for cells in the UICollectionView.
     open var reuseIdentifier: String
@@ -35,9 +35,9 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
      * The callback to populate a subclass of UITableViewCell with an object
      * provided by the datasource.
      */
-    open var populateCellBlock: ((UICollectionViewCell, Model)->Void)?
+    open var populateCellBlock: ((UICollectionViewCell, T)->Void)?
     
-    open var sectionNameBlock: ((Model) -> String?)? {
+    open var sectionNameBlock: ((T) -> String?)? {
         didSet {
             if sectionNameBlock != nil {
                 updateSections()
@@ -56,79 +56,79 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         }
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, filterBlock: FirebaseArray<Model>.FilterBlock?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
+    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<T>.SortOrderBlock?, filterBlock: FirebaseArray<T>.FilterBlock?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
         collectionView?.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, filterBlock: FirebaseArray<Model>.FilterBlock?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
+    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<T>.SortOrderBlock?, filterBlock: FirebaseArray<T>.FilterBlock?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
         self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, filterBlock: FirebaseArray<Model>.FilterBlock?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
+    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<T>.SortOrderBlock?, filterBlock: FirebaseArray<T>.FilterBlock?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
         let nib = UINib(nibName: nibName, bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<Model>.FilterBlock?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
+    public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<T>.FilterBlock?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
         collectionView?.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<Model>.FilterBlock?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
+    public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<T>.FilterBlock?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
         self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<Model>.FilterBlock?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
+    public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, filterBlock: FirebaseArray<T>.FilterBlock?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortDescriptors: sortDescriptors, filterBlock: filterBlock)
         let nib = UINib(nibName: nibName, bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, predicate: NSPredicate?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
+    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<T>.SortOrderBlock?, predicate: NSPredicate?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
         collectionView?.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, predicate: NSPredicate?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
+    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<T>.SortOrderBlock?, predicate: NSPredicate?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
         self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, collectionView: collectionView)
     }
     
-    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<Model>.SortOrderBlock?, predicate: NSPredicate?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
+    public convenience init(query: FIRDatabaseQuery, sortOrderBlock: FirebaseArray<T>.SortOrderBlock?, predicate: NSPredicate?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
+        let array = FirebaseArray<T>(query: query, sortOrderBlock: sortOrderBlock, predicate: predicate)
         let nib = UINib(nibName: nibName, bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
     public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, cellClass: AnyClass?, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
+        let array = FirebaseArray<T>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
         collectionView?.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
     public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, prototypeReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
+        let array = FirebaseArray<T>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
         self.init(array: array, reuseIdentifier: prototypeReuseIdentifier, collectionView: collectionView)
     }
     
     public convenience init(query: FIRDatabaseQuery, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate?, nibNamed nibName: String, cellReuseIdentifier: String, collectionView: UICollectionView?) {
-        let array = FirebaseArray<Model>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
+        let array = FirebaseArray<T>(query: query, sortDescriptors: sortDescriptors, predicate: predicate)
         let nib = UINib(nibName: nibName, bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
         self.init(array: array, reuseIdentifier: cellReuseIdentifier, collectionView: collectionView)
     }
     
-    public init(array: FirebaseArray<Model>, reuseIdentifier: String, collectionView: UICollectionView?) {
+    public init(array: FirebaseArray<T>, reuseIdentifier: String, collectionView: UICollectionView?) {
         self.reuseIdentifier = reuseIdentifier
         super.init(array: array)
         collectionView?.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
@@ -141,12 +141,12 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         collectionView?.performBatchUpdates(block, completion: nil)
     }
     
-    override open func initialized<T : FirebaseModel>(children: [T]) {
+    override open func initialized() {
         collectionView?.reloadData()
     }
     
-    override open func added<T : FirebaseModel>(child: T, at index: Int) {
-        guard let child = child as? Model else { return }
+    override open func added<M : FirebaseModel>(child: M, at index: Int) {
+        guard let child = child as? T else { return }
         if let sectionNameBlock = self.sectionNameBlock {
             // collectionView is sectioned
             let sectionName = sectionNameBlock(child) ?? ""
@@ -185,8 +185,8 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         }
     }
     
-    override open func changed<T : FirebaseModel>(child: T, at index: Int) {
-        guard let child = child as? Model else { return }
+    override open func changed<M : FirebaseModel>(child: M, at index: Int) {
+        guard let child = child as? T else { return }
         if let sectionNameBlock = self.sectionNameBlock {
             // collectionView is sectioned
             let sectionName = sectionNameBlock(child) ?? ""
@@ -210,8 +210,8 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         }
     }
 
-    override open func removed<T : FirebaseModel>(child: T, at index: Int) {
-        guard let child = child as? Model else { return }
+    override open func removed<M : FirebaseModel>(child: M, at index: Int) {
+        guard let child = child as? T else { return }
         if let sectionNameBlock = self.sectionNameBlock {
             // tableView is sectioned
             let sectionName = sectionNameBlock(child) ?? ""
@@ -240,8 +240,8 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         }
     }
     
-    override open func moved<T : FirebaseModel>(child: T, from oldIndex: Int, to newIndex: Int) {
-        guard let child = child as? Model else { return }
+    override open func moved<M : FirebaseModel>(child: M, from oldIndex: Int, to newIndex: Int) {
+        guard let child = child as? T else { return }
         if let sectionNameBlock = self.sectionNameBlock {
             // tableView is sectioned
             let sectionName = sectionNameBlock(child) ?? ""
@@ -274,7 +274,7 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         }
     }
     
-    override open func changedSortOrder<T : FirebaseModel>(of children: [T]) {
+    override open func changedSortOrder() {
         self.updateSections()
         self.collectionView?.reloadData()
     }
@@ -303,7 +303,7 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        var object: Model!
+        var object: T!
         
         if self.sectionNames.isEmpty {
             object = self.array[indexPath.row]
@@ -347,7 +347,7 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
      * @param indexPath The index path of the item to retrieve
      * @return The object at the given index path
      */
-    override open func object(at indexPath: IndexPath) -> Model? {
+    override open func object(at indexPath: IndexPath) -> T? {
         if self.sectionNameBlock != nil {
             let sectionValue = self.sectionNames[indexPath.section]
             let section = self.sections[sectionValue]!
@@ -368,7 +368,7 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
             }
             return nil
         }
-        guard let index = self.array.index(where: { (model: Model) -> Bool in
+        guard let index = self.array.index(where: { (model: T) -> Bool in
             return key == model.key
         })
             else { return nil }
@@ -384,7 +384,7 @@ class FirebaseCollectionViewDataSource<Model: FirebaseModel>: FirebaseDataSource
         return self.object(at: indexPath)?.ref
     }
     
-    open func populateCell(with block: ((UICollectionViewCell, Model)->Void)?) {
+    open func populateCell(with block: ((UICollectionViewCell, T)->Void)?) {
         self.populateCellBlock = block
     }
     
