@@ -24,10 +24,11 @@ class PaginatedFirebaseArray<T : FirebaseModel>: FirebaseArray<T> {
     var endValue: Any?
     var sortKey: String?
     var paginatedQuery: FIRDatabaseQuery
-    private var lastLoadedValue: Any?
     var lastLoadedObject: T?
     var isLoaded = false
-    var currentPage = 0
+    
+    lazy var pageEndValues = [Any?]()
+    var pageNumber = 0
     
     public init(query: FIRDatabaseQuery, sortOrderBlock: SortOrderBlock?, filterBlock: FilterBlock?, pageSize: UInt, startValue: Any?, endValue: Any?) {
         self.pageSize = pageSize
@@ -35,9 +36,16 @@ class PaginatedFirebaseArray<T : FirebaseModel>: FirebaseArray<T> {
         self.endValue = endValue
         paginatedQuery = query.queryLimited(toFirst: pageSize)
         super.init(query: query, sortOrderBlock: sortOrderBlock, filterBlock: filterBlock)
+        initListeners(for: paginatedQuery)
     }
     
     override func initListeners(for query: FIRDatabaseQuery) {
+        
+        // Do not init listeners for orignal query
+        if query == self.query {
+            return
+        }
+        
         let cancelHandler: (Error)->Void = { (error: Error) in
             self.delegate?.cancelled(with: error)
         }
@@ -49,9 +57,15 @@ class PaginatedFirebaseArray<T : FirebaseModel>: FirebaseArray<T> {
             }
             
             for (i, childSnap) in children.enumerated() {
-                guard let childSnap = childSnap as? FIRDataSnapshot,
+                
+                // After the first page, the first element of the new page will be a duplicate of the
+                // last element of the previous page due to how FIRDatabaseQuery works.
+                // Therefore, we must ignore it.
+                guard i != 0 || self.pageNumber == 0,
+                    let childSnap = childSnap as? FIRDataSnapshot,
                     let model = T(snapshot: childSnap)
-                    else { break }
+                    else { continue }
+                
                 let index = self.insertionIndex(of: model)
                 self.keys.insert(model.key)
                 
@@ -68,17 +82,17 @@ class PaginatedFirebaseArray<T : FirebaseModel>: FirebaseArray<T> {
                     
                     guard let values = childSnap.value as? [String : Any] else { break }
                     if let sortKey = self.sortKey {
-                        self.lastLoadedValue = values[sortKey] as? String
+                        self.pageEndValues.append(values[sortKey] as? String)
+                    } else {
+                        self.pageEndValues.append(childSnap.key)
                     }
-                    self.lastLoadedValue = childSnap.key
                 }
             }
             self.delegate?.initialized()
-            self.isInitialized = true
         }
         
         let addHandler = { (snapshot: FIRDataSnapshot) in
-            guard self.isInitialized, let model = T(snapshot: snapshot) else { return }
+            guard self.pageNumber < self.pageEndValues.count, let model = T(snapshot: snapshot) else { return }
             
             // Check if result should be filtered
             if let filterBlock = self.filterBlock, !filterBlock(model) {
@@ -160,15 +174,11 @@ class PaginatedFirebaseArray<T : FirebaseModel>: FirebaseArray<T> {
         observerHandles.append(contentsOf: [added, changed, removed, moved])
     }
     
-    func updateQuery(for pageNumber: Int) {
-        paginatedQuery = query.queryStarting(atValue: lastLoadedValue).queryLimited(toFirst: pageSize)
-        initListeners(for: paginatedQuery)
-    }
-    
     open func loadNextPage() {
         if !isLoaded {
-            currentPage += 1
-            updateQuery(for: currentPage)
+            paginatedQuery = query.queryStarting(atValue: pageEndValues[pageNumber]).queryLimited(toFirst: pageSize)
+            initListeners(for: paginatedQuery)
+            pageNumber += 1
         }
     }
     

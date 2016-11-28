@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5BD96DD50825AC14DAC3C231 /* Pods_FireListerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3467DF493D5D86D3A261F8 /* Pods_FireListerUITests.framework */; };
+		7D2BC71E1DEC91DC009A9210 /* PaginatedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2BC71D1DEC91DC009A9210 /* PaginatedTableViewController.swift */; };
 		7D2C95E61DAFF2E100656843 /* ListsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2C95E51DAFF2E100656843 /* ListsCollectionViewController.swift */; };
 		7D2C95E81DAFF67F00656843 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2C95E71DAFF67F00656843 /* ListCollectionViewCell.swift */; };
 		7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34962E1DA97A360065DC45 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		2821B34C9209CCEC6DBE633C /* Pods-FireLister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLister.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLister/Pods-FireLister.release.xcconfig"; sourceTree = "<group>"; };
 		3576CDB58E336584643E7DA9 /* Pods-FireListerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireListerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireListerTests/Pods-FireListerTests.release.xcconfig"; sourceTree = "<group>"; };
+		7D2BC71D1DEC91DC009A9210 /* PaginatedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedTableViewController.swift; sourceTree = "<group>"; };
 		7D2BF4001DCA39BC00359FA8 /* FirebaseDatabaseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabaseUI.framework; path = "Pods/../build/Debug-iphoneos/FirebaseDatabaseUI.framework"; sourceTree = "<group>"; };
 		7D2C95E51DAFF2E100656843 /* ListsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsCollectionViewController.swift; sourceTree = "<group>"; };
 		7D2C95E71DAFF67F00656843 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				7DCCF8151DAC60CC00183EA6 /* ReminderDetailTableViewController.swift */,
 				7DCCF81D1DAC98FC00183EA6 /* RepeatTableViewController.swift */,
 				7D58F2CD1DB07B44004AD9E1 /* CreateListTableViewController.swift */,
+				7D2BC71D1DEC91DC009A9210 /* PaginatedTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				7D58F2D01DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift in Sources */,
 				7DCCF8161DAC60CC00183EA6 /* ReminderDetailTableViewController.swift in Sources */,
 				7DED93021DAFE8B000467615 /* User.swift in Sources */,
+				7D2BC71E1DEC91DC009A9210 /* PaginatedTableViewController.swift in Sources */,
 				7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */,
 				7D5B42661DDBC143007D57DC /* SnapshotModel.swift in Sources */,
 				7D58F2CC1DB06D0E004AD9E1 /* ColorCircleView.swift in Sources */,

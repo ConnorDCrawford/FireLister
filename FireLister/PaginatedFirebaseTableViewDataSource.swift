@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class PaginatedFirebaseTableViewDataSource<T : FirebaseModel>: FirebaseTableViewDataSource<T> {
     
@@ -38,4 +39,6 @@ class PaginatedFirebaseTableViewDataSource<T : FirebaseModel>: FirebaseTableView
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
 
+    
+    
 }

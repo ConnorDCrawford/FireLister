@@ -47,7 +47,7 @@ open class FirebaseArray<T : FirebaseModel>: NSObject, Collection {
      */
     var sortOrderBlock: SortOrderBlock?
     
-    // TODO: Write open convenience initializers and documentation
+    // TODO: Write documentation
     
     public convenience init(ref: FIRDatabaseReference) {
         self.init(query: ref)
@@ -89,7 +89,7 @@ open class FirebaseArray<T : FirebaseModel>: NSObject, Collection {
     
     var models = [T]()
     lazy var hiddenModels = [String : T]()
-    var isInitialized = false
+    private var isInitialized = false
     lazy var observerHandles = [UInt]()
     lazy var keys = Set<String>()
     
