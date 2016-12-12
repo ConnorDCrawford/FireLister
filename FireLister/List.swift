@@ -69,7 +69,7 @@ class List: NSObject, FirebaseModel {
     func remove(_ completionHandler: ((Error?)->Void)?) {
         
         // Delete all reminders associated with list
-        let query = FIRDatabase.database().reference().child("reminders").queryOrdered(byChild: "lid").queryEqual(toValue: key)
+        let query = FIRDatabase.database().reference().child("reminders").child(key)
         query.observe(.value) { (snapshot: FIRDataSnapshot) in
             for child in snapshot.children.allObjects {
                 let childSnapshot = child as! FIRDataSnapshot

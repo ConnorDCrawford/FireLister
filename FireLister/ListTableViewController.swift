@@ -12,15 +12,32 @@ import FirebaseDatabase
 class ListTableViewController: UITableViewController {
 
     private let predicate = NSPredicate(format: "completed == FALSE")
+    var isPaginated = false
     
     var list: List? {
         didSet {
             guard let list = list else { return }
             
             // Configure reminders FirebaseArray
-            let ref = FIRDatabase.database().reference().child("reminders")
-            let query = ref.queryOrdered(byChild: "lid").queryEqual(toValue: list.key)
-            remindersDataSource = FirebaseTableViewDataSource(query: query, sortDescriptors: [NSSortDescriptor(key: "key", ascending: true)], predicate: predicate, prototypeReuseIdentifier: "ReminderCell", tableView: tableView)
+            let ref = FIRDatabase.database().reference().child("reminders").child(list.key)
+            let query = ref.queryOrderedByKey()
+            
+            if isPaginated {
+                remindersDataSource = PaginatedFirebaseTableViewDataSource(query: query,
+                                                                           sortKey: nil,
+                                                                           pageSize: 10,
+                                                                           startValue: nil,
+                                                                           sortDescriptors: nil,
+                                                                           predicate: predicate, prototypeReuseIdentifier: "ReminderCell",
+                                                                           tableView: tableView)
+                
+            } else {
+                remindersDataSource = FirebaseTableViewDataSource(query: query,
+                                                                  sortDescriptors: nil,
+                                                                  predicate: predicate, prototypeReuseIdentifier: "ReminderCell",
+                                                                  tableView: tableView)
+            }
+            
             remindersDataSource?.populateCell { (cell, reminder) in
                 let cell = cell as! ReminderTableViewCell
                 cell.reminder = reminder
@@ -40,6 +57,8 @@ class ListTableViewController: UITableViewController {
                 cell.completedButton.setImage(selectedImage, for: .highlighted)
                 cell.completedButton.isSelected = reminder.isCompleted
             }
+            
+            tableView.dataSource = remindersDataSource
             
             // Set view controller's title
             navigationItem.title = list.title
@@ -88,65 +107,37 @@ class ListTableViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = remindersDataSource?.count {
-            return count + 1
-        }
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isLastCell = indexPath.row == remindersDataSource?.count
-        var cell: UITableViewCell!
-        // Normal reminder cell, so use remindersDataSource
-        if !isLastCell {
-            cell = remindersDataSource?.tableView(tableView, cellForRowAt: indexPath)
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "AddReminderCell", for: indexPath)
-        }
-        
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Cannot edit last row
-        return indexPath.row != remindersDataSource?.count
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // TODO: Handle remove
-            let reminder = remindersDataSource?.object(at: indexPath)
-            reminder?.remove(nil)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         if indexPath.row != remindersDataSource?.count {
             let reminder = remindersDataSource?.object(at: indexPath)
             performSegue(withIdentifier: "showDetail", sender: reminder)
         }
     }
-
-    func addReminder() {
-        newReminderTextField?.resignFirstResponder()
-        newReminderText = newReminderTextField?.text
-        newReminderTextField?.text = nil
-        
-        if let text = newReminderText, let listID = list?.key {
-            let reminder = Reminder(listID: listID, text: text, alarmDate: nil, repeatFrequency: .never)
+    
+    func addReminder(title: String) {
+        if let listID = list?.key {
+            let reminder = Reminder(listID: listID, text: title, alarmDate: nil, repeatFrequency: .never)
             reminder.push(nil)
         }
     }
     
-    @IBAction func didPressAdd(_ sender: UIButton) {
-        addReminder()
+    @IBAction func didPressAdd(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add Reminder", message: nil, preferredStyle: .alert)
+        let titleAction = UIAlertAction(title: "Add", style: .default, handler: { _ in
+            let titleTextField = alertController.textFields![0] as UITextField
+            if let text = titleTextField.text {
+                self.addReminder(title: text)
+            }}
+        )
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Reminder Title"
+        }
+        
+        alertController.addAction(titleAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func didPressShowCompleted(_ sender: UIBarButtonItem) {
@@ -159,6 +150,7 @@ class ListTableViewController: UITableViewController {
             sender.title = "Show Completed"
         }
     }
+    
 }
 
 extension ListTableViewController: UITextFieldDelegate {
@@ -170,8 +162,6 @@ extension ListTableViewController: UITextFieldDelegate {
                 reminder?.text = textField.text
                 reminder?.push(nil)
                 textField.resignFirstResponder()
-            } else if textField.superview?.superview is AddReminderTableViewCell {
-                addReminder()
             }
             return true
         }
