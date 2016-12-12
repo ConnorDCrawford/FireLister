@@ -275,7 +275,7 @@ class PaginatedFirebaseCollectionViewDataSource<T : FirebaseModel>: FirebaseColl
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Check if the object is the last element of the last page
         if let object = object(at: indexPath), object.key == paginatedArray.lastLoadedObject?.key {
-            paginatedArray.load(pageNumber: paginatedArray.numberOfPages)
+            paginatedArray.load(pageNumber: paginatedArray.numberOfPages + 1)
         }
         
         return super.collectionView(collectionView, cellForItemAt: indexPath)
