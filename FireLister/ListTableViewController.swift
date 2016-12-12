@@ -58,8 +58,6 @@ class ListTableViewController: UITableViewController {
                 cell.completedButton.isSelected = reminder.isCompleted
             }
             
-            tableView.dataSource = remindersDataSource
-            
             // Set view controller's title
             navigationItem.title = list.title
         }
@@ -84,7 +82,7 @@ class ListTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
+        self.clearsSelectionOnViewWillAppear = self.splitViewController?.isCollapsed ?? true
         super.viewWillAppear(animated)
     }
     
@@ -106,6 +104,32 @@ class ListTableViewController: UITableViewController {
     }
 
     // MARK: - Table View
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return remindersDataSource?.numberOfSections(in: tableView) ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return remindersDataSource?.tableView(tableView, numberOfRowsInSection: section) ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return remindersDataSource?.tableView(tableView, cellForRowAt: indexPath) ?? UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // TODO: Handle remove
+            let reminder = remindersDataSource?.object(at: indexPath)
+            reminder?.remove(nil)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
 
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         if indexPath.row != remindersDataSource?.count {
@@ -132,7 +156,7 @@ class ListTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         
         alertController.addTextField { (textField) in
-            textField.placeholder = "Reminder Title"
+            textField.placeholder = "Reminder title"
         }
         
         alertController.addAction(titleAction)

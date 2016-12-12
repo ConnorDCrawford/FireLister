@@ -19,6 +19,7 @@
 		7D3496511DA97A360065DC45 /* FireListerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496501DA97A360065DC45 /* FireListerUITests.swift */; };
 		7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34965E1DA983990065DC45 /* SignInTableViewController.swift */; };
 		7D3496611DA9A1BC0065DC45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */; };
+		7D3E18B01DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18AF1DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */; };
 		7D58F2CC1DB06D0E004AD9E1 /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D58F2CB1DB06D0E004AD9E1 /* ColorCircleView.swift */; };
 		7D58F2CE1DB07B44004AD9E1 /* CreateListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D58F2CD1DB07B44004AD9E1 /* CreateListTableViewController.swift */; };
 		7D58F2D01DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D58F2CF1DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift */; };
@@ -84,6 +85,7 @@
 		7D3496521DA97A360065DC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D34965E1DA983990065DC45 /* SignInTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTableViewController.swift; sourceTree = "<group>"; };
 		7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D3E18AF1DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedFirebaseCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		7D58F2CB1DB06D0E004AD9E1 /* ColorCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCircleView.swift; sourceTree = "<group>"; };
 		7D58F2CD1DB07B44004AD9E1 /* CreateListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListTableViewController.swift; sourceTree = "<group>"; };
 		7D58F2CF1DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCircleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				7DC6507A1DFE09EC005C496C /* FirebaseModel.swift */,
 				7DC6507C1DFE09EC005C496C /* PaginatedFirebaseArray.swift */,
 				7DC6507D1DFE09EC005C496C /* PaginatedFirebaseTableViewDataSource.swift */,
+				7D3E18AF1DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */,
 				7DC6507E1DFE09EC005C496C /* SnapshotModel.swift */,
 			);
 			name = FirebaseDatabaseUI;
@@ -599,6 +602,7 @@
 				7DC650831DFE09EC005C496C /* FirebaseDataSource.swift in Sources */,
 				7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */,
 				7D3496311DA97A360065DC45 /* ListTableViewController.swift in Sources */,
+				7D3E18B01DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift in Sources */,
 				7DC650881DFE09EC005C496C /* SnapshotModel.swift in Sources */,
 				7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */,
 				7DCCF8211DACA25D00183EA6 /* SetRepeatDelegate.swift in Sources */,
