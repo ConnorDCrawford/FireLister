@@ -74,7 +74,9 @@ open class FirebaseArray<T : FirebaseModel>: NSObject, Collection {
     public init(query: FIRDatabaseQuery, sortOrderBlock: SortOrderBlock?, filterBlock: FilterBlock?) {
         self.query = query
         self.filterBlock = filterBlock
-        self.sortOrderBlock = sortOrderBlock
+        self.sortOrderBlock = sortOrderBlock ?? { (t1, t2) in
+            return t1.key < t2.key ? .orderedAscending : .orderedDescending
+        }
         super.init()
         self.initListeners(for: query)
     }
@@ -293,6 +295,7 @@ open class FirebaseArray<T : FirebaseModel>: NSObject, Collection {
             
             // Show hidden models that should now be visible
             let oldModels = self.models
+//            var indices = [Index]()
             for (_, hidden) in self.hiddenModels {
                 if filterBlock == nil || filterBlock!(hidden) {
                     _ = self.add(hiddenModel: hidden)

@@ -13,6 +13,8 @@ private let reuseIdentifier = "ListCell"
 
 class ListsCollectionViewController: UICollectionViewController {
 
+    private var isPaginated = false
+    
     private var dataSource: FirebaseCollectionViewDataSource<List>?
     var userID: String? {
         didSet {
@@ -33,25 +35,12 @@ class ListsCollectionViewController: UICollectionViewController {
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let listVC = segue.destination.childViewControllers.first as? ListTableViewController
+        listVC?.isPaginated = isPaginated
         if let indexPath = collectionView?.indexPathsForSelectedItems?.first {
             listVC?.list = dataSource?.object(at: indexPath)
         }
@@ -83,6 +72,12 @@ class ListsCollectionViewController: UICollectionViewController {
             present(alert, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func switchPaginated(_ sender: UIBarButtonItem) {
+        isPaginated = !isPaginated
+        sender.title = isPaginated ? "Switch to Unpaginated" : "Switch to Paginated"
+    }
+    
 }
 
 

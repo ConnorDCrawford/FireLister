@@ -41,7 +41,7 @@ class Reminder: NSObject, FirebaseModel {
     
     /// Use this initializer only when creating a new record in the database
     convenience init(listID: String, text: String, alarmDate: Date?, repeatFrequency: RepeatFrequency) {
-        let ref = Reminder.typeRef.childByAutoId()
+        let ref = Reminder.typeRef.child(listID).childByAutoId()
         let key = ref.key
         self.init(key: key, ref: ref, listID: listID, text: text, alarmDate: alarmDate, repeatFrequency: repeatFrequency, isCompleted: false)
     }
