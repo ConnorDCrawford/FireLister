@@ -19,20 +19,20 @@
 		7D3496511DA97A360065DC45 /* FireListerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3496501DA97A360065DC45 /* FireListerUITests.swift */; };
 		7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D34965E1DA983990065DC45 /* SignInTableViewController.swift */; };
 		7D3496611DA9A1BC0065DC45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */; };
-		7D3E18B01DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18AF1DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */; };
+		7D3E18C61DFEFDBC009945D3 /* Array+InsertionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18BB1DFEFDBC009945D3 /* Array+InsertionIndex.swift */; };
+		7D3E18C71DFEFDBC009945D3 /* FirebaseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18BC1DFEFDBC009945D3 /* FirebaseArray.swift */; };
+		7D3E18C81DFEFDBC009945D3 /* FirebaseArrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18BD1DFEFDBC009945D3 /* FirebaseArrayDelegate.swift */; };
+		7D3E18C91DFEFDBC009945D3 /* FirebaseCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18BE1DFEFDBC009945D3 /* FirebaseCollectionViewDataSource.swift */; };
+		7D3E18CA1DFEFDBC009945D3 /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18BF1DFEFDBC009945D3 /* FirebaseDataSource.swift */; };
+		7D3E18CB1DFEFDBC009945D3 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18C01DFEFDBC009945D3 /* FirebaseModel.swift */; };
+		7D3E18CC1DFEFDBC009945D3 /* FirebaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18C11DFEFDBC009945D3 /* FirebaseTableViewDataSource.swift */; };
+		7D3E18CD1DFEFDBC009945D3 /* PaginatedFirebaseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18C21DFEFDBC009945D3 /* PaginatedFirebaseArray.swift */; };
+		7D3E18CE1DFEFDBC009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18C31DFEFDBC009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */; };
+		7D3E18CF1DFEFDBC009945D3 /* PaginatedFirebaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18C41DFEFDBC009945D3 /* PaginatedFirebaseTableViewDataSource.swift */; };
+		7D3E18D01DFEFDBC009945D3 /* SnapshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E18C51DFEFDBC009945D3 /* SnapshotModel.swift */; };
 		7D58F2CC1DB06D0E004AD9E1 /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D58F2CB1DB06D0E004AD9E1 /* ColorCircleView.swift */; };
 		7D58F2CE1DB07B44004AD9E1 /* CreateListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D58F2CD1DB07B44004AD9E1 /* CreateListTableViewController.swift */; };
 		7D58F2D01DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D58F2CF1DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift */; };
-		7DC6507F1DFE09EC005C496C /* Array+InsertionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC650751DFE09EC005C496C /* Array+InsertionIndex.swift */; };
-		7DC650801DFE09EC005C496C /* FirebaseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC650761DFE09EC005C496C /* FirebaseArray.swift */; };
-		7DC650811DFE09EC005C496C /* FirebaseArrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC650771DFE09EC005C496C /* FirebaseArrayDelegate.swift */; };
-		7DC650821DFE09EC005C496C /* FirebaseCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC650781DFE09EC005C496C /* FirebaseCollectionViewDataSource.swift */; };
-		7DC650831DFE09EC005C496C /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC650791DFE09EC005C496C /* FirebaseDataSource.swift */; };
-		7DC650841DFE09EC005C496C /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6507A1DFE09EC005C496C /* FirebaseModel.swift */; };
-		7DC650851DFE09EC005C496C /* FirebaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6507B1DFE09EC005C496C /* FirebaseTableViewDataSource.swift */; };
-		7DC650861DFE09EC005C496C /* PaginatedFirebaseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6507C1DFE09EC005C496C /* PaginatedFirebaseArray.swift */; };
-		7DC650871DFE09EC005C496C /* PaginatedFirebaseTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6507D1DFE09EC005C496C /* PaginatedFirebaseTableViewDataSource.swift */; };
-		7DC650881DFE09EC005C496C /* SnapshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6507E1DFE09EC005C496C /* SnapshotModel.swift */; };
 		7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */; };
 		7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */; };
 		7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */; };
@@ -85,20 +85,20 @@
 		7D3496521DA97A360065DC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D34965E1DA983990065DC45 /* SignInTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTableViewController.swift; sourceTree = "<group>"; };
 		7D3496601DA9A1BC0065DC45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7D3E18AF1DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedFirebaseCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		7D3E18BB1DFEFDBC009945D3 /* Array+InsertionIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+InsertionIndex.swift"; path = "FirebaseDatabaseUI/Array+InsertionIndex.swift"; sourceTree = "<group>"; };
+		7D3E18BC1DFEFDBC009945D3 /* FirebaseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseArray.swift; path = FirebaseDatabaseUI/FirebaseArray.swift; sourceTree = "<group>"; };
+		7D3E18BD1DFEFDBC009945D3 /* FirebaseArrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseArrayDelegate.swift; path = FirebaseDatabaseUI/FirebaseArrayDelegate.swift; sourceTree = "<group>"; };
+		7D3E18BE1DFEFDBC009945D3 /* FirebaseCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseCollectionViewDataSource.swift; path = FirebaseDatabaseUI/FirebaseCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		7D3E18BF1DFEFDBC009945D3 /* FirebaseDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseDataSource.swift; path = FirebaseDatabaseUI/FirebaseDataSource.swift; sourceTree = "<group>"; };
+		7D3E18C01DFEFDBC009945D3 /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseModel.swift; path = FirebaseDatabaseUI/FirebaseModel.swift; sourceTree = "<group>"; };
+		7D3E18C11DFEFDBC009945D3 /* FirebaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseTableViewDataSource.swift; path = FirebaseDatabaseUI/FirebaseTableViewDataSource.swift; sourceTree = "<group>"; };
+		7D3E18C21DFEFDBC009945D3 /* PaginatedFirebaseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaginatedFirebaseArray.swift; path = FirebaseDatabaseUI/PaginatedFirebaseArray.swift; sourceTree = "<group>"; };
+		7D3E18C31DFEFDBC009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaginatedFirebaseCollectionViewDataSource.swift; path = FirebaseDatabaseUI/PaginatedFirebaseCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		7D3E18C41DFEFDBC009945D3 /* PaginatedFirebaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaginatedFirebaseTableViewDataSource.swift; path = FirebaseDatabaseUI/PaginatedFirebaseTableViewDataSource.swift; sourceTree = "<group>"; };
+		7D3E18C51DFEFDBC009945D3 /* SnapshotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotModel.swift; path = FirebaseDatabaseUI/SnapshotModel.swift; sourceTree = "<group>"; };
 		7D58F2CB1DB06D0E004AD9E1 /* ColorCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCircleView.swift; sourceTree = "<group>"; };
 		7D58F2CD1DB07B44004AD9E1 /* CreateListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListTableViewController.swift; sourceTree = "<group>"; };
 		7D58F2CF1DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCircleCollectionViewCell.swift; sourceTree = "<group>"; };
-		7DC650751DFE09EC005C496C /* Array+InsertionIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+InsertionIndex.swift"; path = "../../FirebaseDatabaseUI/FirebaseDatabaseUI/Array+InsertionIndex.swift"; sourceTree = "<group>"; };
-		7DC650761DFE09EC005C496C /* FirebaseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseArray.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/FirebaseArray.swift; sourceTree = "<group>"; };
-		7DC650771DFE09EC005C496C /* FirebaseArrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseArrayDelegate.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/FirebaseArrayDelegate.swift; sourceTree = "<group>"; };
-		7DC650781DFE09EC005C496C /* FirebaseCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseCollectionViewDataSource.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/FirebaseCollectionViewDataSource.swift; sourceTree = "<group>"; };
-		7DC650791DFE09EC005C496C /* FirebaseDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseDataSource.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/FirebaseDataSource.swift; sourceTree = "<group>"; };
-		7DC6507A1DFE09EC005C496C /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseModel.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/FirebaseModel.swift; sourceTree = "<group>"; };
-		7DC6507B1DFE09EC005C496C /* FirebaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseTableViewDataSource.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/FirebaseTableViewDataSource.swift; sourceTree = "<group>"; };
-		7DC6507C1DFE09EC005C496C /* PaginatedFirebaseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaginatedFirebaseArray.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/PaginatedFirebaseArray.swift; sourceTree = "<group>"; };
-		7DC6507D1DFE09EC005C496C /* PaginatedFirebaseTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaginatedFirebaseTableViewDataSource.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/PaginatedFirebaseTableViewDataSource.swift; sourceTree = "<group>"; };
-		7DC6507E1DFE09EC005C496C /* SnapshotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotModel.swift; path = ../../FirebaseDatabaseUI/FirebaseDatabaseUI/SnapshotModel.swift; sourceTree = "<group>"; };
 		7DCCF80A1DAAD9BB00183EA6 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		7DCCF80F1DAAE34B00183EA6 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		7DCCF8111DAAE35500183EA6 /* AddReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderTableViewCell.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				7D34962E1DA97A360065DC45 /* AppDelegate.swift */,
-				7D5B42581DDBC127007D57DC /* FirebaseDatabaseUI */,
+				7D3E18D11DFEFDC6009945D3 /* FirebaseDatabaseUI */,
 				7DCCF80C1DAAD9C700183EA6 /* Models */,
 				7DCCF80E1DAAE33100183EA6 /* Views */,
 				7DCCF80D1DAAD9D200183EA6 /* View Controllers */,
@@ -205,20 +205,20 @@
 			path = FireListerUITests;
 			sourceTree = "<group>";
 		};
-		7D5B42581DDBC127007D57DC /* FirebaseDatabaseUI */ = {
+		7D3E18D11DFEFDC6009945D3 /* FirebaseDatabaseUI */ = {
 			isa = PBXGroup;
 			children = (
-				7DC650751DFE09EC005C496C /* Array+InsertionIndex.swift */,
-				7DC650761DFE09EC005C496C /* FirebaseArray.swift */,
-				7DC650771DFE09EC005C496C /* FirebaseArrayDelegate.swift */,
-				7DC6507B1DFE09EC005C496C /* FirebaseTableViewDataSource.swift */,
-				7DC650781DFE09EC005C496C /* FirebaseCollectionViewDataSource.swift */,
-				7DC650791DFE09EC005C496C /* FirebaseDataSource.swift */,
-				7DC6507A1DFE09EC005C496C /* FirebaseModel.swift */,
-				7DC6507C1DFE09EC005C496C /* PaginatedFirebaseArray.swift */,
-				7DC6507D1DFE09EC005C496C /* PaginatedFirebaseTableViewDataSource.swift */,
-				7D3E18AF1DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */,
-				7DC6507E1DFE09EC005C496C /* SnapshotModel.swift */,
+				7D3E18BB1DFEFDBC009945D3 /* Array+InsertionIndex.swift */,
+				7D3E18BC1DFEFDBC009945D3 /* FirebaseArray.swift */,
+				7D3E18BD1DFEFDBC009945D3 /* FirebaseArrayDelegate.swift */,
+				7D3E18BE1DFEFDBC009945D3 /* FirebaseCollectionViewDataSource.swift */,
+				7D3E18BF1DFEFDBC009945D3 /* FirebaseDataSource.swift */,
+				7D3E18C01DFEFDBC009945D3 /* FirebaseModel.swift */,
+				7D3E18C11DFEFDBC009945D3 /* FirebaseTableViewDataSource.swift */,
+				7D3E18C21DFEFDBC009945D3 /* PaginatedFirebaseArray.swift */,
+				7D3E18C31DFEFDBC009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift */,
+				7D3E18C41DFEFDBC009945D3 /* PaginatedFirebaseTableViewDataSource.swift */,
+				7D3E18C51DFEFDBC009945D3 /* SnapshotModel.swift */,
 			);
 			name = FirebaseDatabaseUI;
 			sourceTree = "<group>";
@@ -581,32 +581,32 @@
 				7DCCF81C1DAC939F00183EA6 /* TextFieldTableViewCell.swift in Sources */,
 				7D2C95E81DAFF67F00656843 /* ListCollectionViewCell.swift in Sources */,
 				7DED93041DAFE91300467615 /* List.swift in Sources */,
+				7D3E18CC1DFEFDBC009945D3 /* FirebaseTableViewDataSource.swift in Sources */,
+				7D3E18CF1DFEFDBC009945D3 /* PaginatedFirebaseTableViewDataSource.swift in Sources */,
 				7DCCF8101DAAE34B00183EA6 /* ReminderTableViewCell.swift in Sources */,
-				7DC650871DFE09EC005C496C /* PaginatedFirebaseTableViewDataSource.swift in Sources */,
+				7D3E18CB1DFEFDBC009945D3 /* FirebaseModel.swift in Sources */,
 				7DCCF80B1DAAD9BB00183EA6 /* Reminder.swift in Sources */,
 				7DCCF81E1DAC98FC00183EA6 /* RepeatTableViewController.swift in Sources */,
+				7D3E18C61DFEFDBC009945D3 /* Array+InsertionIndex.swift in Sources */,
+				7D3E18CA1DFEFDBC009945D3 /* FirebaseDataSource.swift in Sources */,
 				7D58F2CE1DB07B44004AD9E1 /* CreateListTableViewController.swift in Sources */,
-				7DC6507F1DFE09EC005C496C /* Array+InsertionIndex.swift in Sources */,
-				7DC650861DFE09EC005C496C /* PaginatedFirebaseArray.swift in Sources */,
 				7D58F2D01DB07F9A004AD9E1 /* ColorCircleCollectionViewCell.swift in Sources */,
 				7DCCF8161DAC60CC00183EA6 /* ReminderDetailTableViewController.swift in Sources */,
 				7DED93021DAFE8B000467615 /* User.swift in Sources */,
-				7DC650841DFE09EC005C496C /* FirebaseModel.swift in Sources */,
-				7DC650821DFE09EC005C496C /* FirebaseCollectionViewDataSource.swift in Sources */,
-				7DC650801DFE09EC005C496C /* FirebaseArray.swift in Sources */,
-				7DC650811DFE09EC005C496C /* FirebaseArrayDelegate.swift in Sources */,
 				7D34965F1DA983990065DC45 /* SignInTableViewController.swift in Sources */,
-				7DC650851DFE09EC005C496C /* FirebaseTableViewDataSource.swift in Sources */,
 				7D58F2CC1DB06D0E004AD9E1 /* ColorCircleView.swift in Sources */,
 				7D2C95E61DAFF2E100656843 /* ListsCollectionViewController.swift in Sources */,
-				7DC650831DFE09EC005C496C /* FirebaseDataSource.swift in Sources */,
 				7DCCF8121DAAE35500183EA6 /* AddReminderTableViewCell.swift in Sources */,
+				7D3E18CD1DFEFDBC009945D3 /* PaginatedFirebaseArray.swift in Sources */,
 				7D3496311DA97A360065DC45 /* ListTableViewController.swift in Sources */,
-				7D3E18B01DFE6F9E009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift in Sources */,
-				7DC650881DFE09EC005C496C /* SnapshotModel.swift in Sources */,
 				7D34962F1DA97A360065DC45 /* AppDelegate.swift in Sources */,
 				7DCCF8211DACA25D00183EA6 /* SetRepeatDelegate.swift in Sources */,
+				7D3E18CE1DFEFDBC009945D3 /* PaginatedFirebaseCollectionViewDataSource.swift in Sources */,
+				7D3E18C91DFEFDBC009945D3 /* FirebaseCollectionViewDataSource.swift in Sources */,
+				7D3E18D01DFEFDBC009945D3 /* SnapshotModel.swift in Sources */,
 				7DCCF81A1DAC922700183EA6 /* TriggerAlarmTableViewCell.swift in Sources */,
+				7D3E18C81DFEFDBC009945D3 /* FirebaseArrayDelegate.swift in Sources */,
+				7D3E18C71DFEFDBC009945D3 /* FirebaseArray.swift in Sources */,
 				7DCCF8141DAB1D2E00183EA6 /* ReminderCellTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
