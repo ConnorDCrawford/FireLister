@@ -68,8 +68,4 @@ FireLister/GoogleService-Info.plist
 Podfile.lock
 Pods/
 *.xcbkptlist
-<<<<<<< HEAD
-
 FireLister.xcworkspace/xcuserdata/connorcrawford.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
-=======
->>>>>>> origin/Pagination
